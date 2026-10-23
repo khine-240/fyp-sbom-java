@@ -1,5 +1,6 @@
 {
   "repos": [
-    { "name": "webgoat", "url": "https://github.com/WebGoat/WebGoat" }
+    { "name": "webgoat", "url": "https://github.com/WebGoat/WebGoat" },
+    { "name": "nodegoat", "url": "https://github.com/OWASP/NodeGoat" }
   ]
 }
