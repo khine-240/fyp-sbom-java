@@ -1,0 +1,6 @@
+repo,packages,vulnerabilities,critical,high,medium,low,negligible,unknown,fixable
+webgoat,73,36,1,22,13,0,0,0,36
+nodegoat,422,105,14,58,23,10,0,0,103
+pygoat,152,564,25,172,312,55,0,0,564
+dvpwa,19,63,2,8,34,19,0,0,63
+dvga,50,55,4,19,28,4,0,0,55

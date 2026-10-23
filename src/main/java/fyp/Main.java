@@ -58,5 +58,8 @@ public class Main {
 
         mapper.writeValue(new File("output/findings.json"), findings);
         System.out.println("\nDone. " + findings.size() + " findings written to output/findings.json");
+
+        // 5. Print the summary table and save summary.csv + findings.csv
+        ReportWriter.write(testset, findings);
     }
 }
