@@ -1,9 +1,10 @@
 {
   "repos": [
-    { "name": "webgoat",  "url": "https://github.com/WebGoat/WebGoat" },
-    { "name": "nodegoat", "url": "https://github.com/OWASP/NodeGoat" },
-    { "name": "pygoat",   "url": "https://github.com/adeyosemanputra/pygoat" },
-    { "name": "dvpwa",    "url": "https://github.com/anxolerd/dvpwa" },
-    { "name": "dvga",     "url": "https://github.com/dolevf/Damn-Vulnerable-GraphQL-Application" }
+    { "name": "webgoat",    "url": "https://github.com/WebGoat/WebGoat" },
+    { "name": "nodegoat",   "url": "https://github.com/OWASP/NodeGoat" },
+    { "name": "pygoat",     "url": "https://github.com/adeyosemanputra/pygoat" },
+    { "name": "dvpwa",      "url": "https://github.com/anxolerd/dvpwa" },
+    { "name": "dvga",       "url": "https://github.com/dolevf/Damn-Vulnerable-GraphQL-Application" },
+    { "name": "juice-shop", "url": "https://github.com/juice-shop/juice-shop" }
   ]
 }
