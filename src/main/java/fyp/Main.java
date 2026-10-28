@@ -34,9 +34,19 @@ public class Main {
 
             try {
                 // 1. Download the repo (skip if already downloaded)
+                //    If testset.json gives a "commit", download exactly that frozen version.
+                String commit = repo.path("commit").asText("");
                 if (!CommandRunner.exists(repoDir)) {
-                    CommandRunner.run(List.of("git", "clone", "--depth", "1", url, repoDir));
+                    if (commit.isEmpty()) {
+                        CommandRunner.run(List.of("git", "clone", "--depth", "1", url, repoDir));
+                    } else {
+                        CommandRunner.run(List.of("git", "init", "-q", repoDir));
+                        CommandRunner.run(List.of("git", "-C", repoDir, "remote", "add", "origin", url));
+                        CommandRunner.run(List.of("git", "-C", repoDir, "fetch", "-q", "--depth", "1", "origin", commit));
+                        CommandRunner.run(List.of("git", "-C", repoDir, "checkout", "-q", "FETCH_HEAD"));
+                    }
                 }
+                if (!commit.isEmpty()) System.out.println("  pinned at commit " + commit);
 
                 // 2. Syft: make the CycloneDX SBOM
                 CommandRunner.run(List.of("syft", "scan", "dir:" + repoDir,
