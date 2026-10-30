@@ -1,0 +1,1080 @@
+
+=== webgoat ===
+  pinned at commit e7b131360d74336c0c94ab5c8a21259503f59be8
+  $ syft scan dir:repos/webgoat -o cyclonedx-json=output/sboms/webgoat.cdx.json -q
+  $ grype sbom:output/sboms/webgoat.cdx.json -o json --file output/grype/webgoat.grype.json -q
+  -> 36 findings
+
+=== nodegoat ===
+  pinned at commit c5cb68a7084e4ae7dcc60e6a98768720a81841e8
+  $ syft scan dir:repos/nodegoat -o cyclonedx-json=output/sboms/nodegoat.cdx.json -q
+  $ grype sbom:output/sboms/nodegoat.cdx.json -o json --file output/grype/nodegoat.grype.json -q
+  -> 105 findings
+
+=== pygoat ===
+  pinned at commit 46fef968f3f44d1191363baf936aaa3335dc5c6d
+  $ syft scan dir:repos/pygoat -o cyclonedx-json=output/sboms/pygoat.cdx.json -q
+  $ grype sbom:output/sboms/pygoat.cdx.json -o json --file output/grype/pygoat.grype.json -q
+  -> 564 findings
+
+=== dvpwa ===
+  pinned at commit a1d8f89fac2e57093189853c6527c2b01fc1d9c1
+  $ syft scan dir:repos/dvpwa -o cyclonedx-json=output/sboms/dvpwa.cdx.json -q
+  $ grype sbom:output/sboms/dvpwa.cdx.json -o json --file output/grype/dvpwa.grype.json -q
+  -> 63 findings
+
+=== dvga ===
+  pinned at commit a961308c02d1fb462b192681c336b0739e432da7
+  $ syft scan dir:repos/dvga -o cyclonedx-json=output/sboms/dvga.cdx.json -q
+  $ grype sbom:output/sboms/dvga.cdx.json -o json --file output/grype/dvga.grype.json -q
+  -> 55 findings
+
+=== juice-shop ===
+  pinned at commit efdc94dc5861f78acbc291ebfab328b5a2f2f47d
+  $ syft scan dir:repos/juice-shop -o cyclonedx-json=output/sboms/juice-shop.cdx.json -q
+  $ grype sbom:output/sboms/juice-shop.cdx.json -o json --file output/grype/juice-shop.grype.json -q
+  -> 63 findings
+
+Done. 886 findings written to output/findings.json
+
+================ SUMMARY ================
+repo       packages  vulns  crit  high   med   low  negl  unkn  fixable
+webgoat          73     36     1    22    13     -     -     -       36
+nodegoat        422    105    14    58    23    10     -     -      103
+pygoat          152    564    25   172   312    55     -     -      564
+dvpwa            19     63     2     8    34    19     -     -       63
+dvga             50     55     4    19    28     4     -     -       55
+juice-shop      725     63     9    24    29     1     -     -       54
+TOTAL          1441    886
+
+Saved output/summary.csv and output/findings.csv
+
+================ VULNERABLE PACKAGES ================
+
+--- webgoat (1 vulnerable packages) ---
+package                            version          vulns crit high  med  low  fix status     upgrade to
+xstream                            1.4.5               36    1   22   13    -  fix available  1.4.21
+      - CVE-2013-7285                Critical  fixed in 1.4.7                 GHSA-f554-x222-wgf7
+      - CVE-2021-39144               High      fixed in 1.4.18                GHSA-j9h8-phrw-h4fh
+      - CVE-2020-26217               High      fixed in 1.4.14-java7          GHSA-mw36-7c6c-q4q2
+      - CVE-2021-21341               High      fixed in 1.4.16                GHSA-2p3x-qw9c-25hh
+      - CVE-2021-29505               High      fixed in 1.4.17                GHSA-7chv-rrw6-w6fc
+      - CVE-2021-39141               High      fixed in 1.4.18                GHSA-g5w6-mrj7-75h2
+      - CVE-2021-39146               High      fixed in 1.4.18                GHSA-p8pq-r894-fm8f
+      - CVE-2021-39152               High      fixed in 1.4.18                GHSA-xw4p-crpj-vjx2
+      - CVE-2022-41966               High      fixed in 1.4.20                GHSA-j563-grx4-pjpv
+      - CVE-2016-3674                High      fixed in 1.4.9                 GHSA-rgh3-987h-wpmw
+      - CVE-2021-43859               High      fixed in 1.4.19                GHSA-rmr5-cpv2-vgjf
+      - CVE-2021-39149               High      fixed in 1.4.18                GHSA-3ccq-5vw3-2p6x
+      - CVE-2021-39154               High      fixed in 1.4.18                GHSA-6w62-hx7r-mw68
+      - CVE-2021-39151               High      fixed in 1.4.18                GHSA-hph2-m3g5-xxv4
+      - CVE-2021-39148               High      fixed in 1.4.18                GHSA-qrx8-8545-4wg2
+      - CVE-2021-39147               High      fixed in 1.4.18                GHSA-h7v4-7xg3-hxcc
+      - CVE-2017-7957                High      fixed in 1.4.10                GHSA-7hwc-46rm-65jh
+      - CVE-2021-39139               High      fixed in 1.4.18                GHSA-64xx-cq4q-mf44
+      - CVE-2021-39153               High      fixed in 1.4.18                GHSA-2q8x-2p7f-574v
+      - CVE-2021-39145               High      fixed in 1.4.18                GHSA-8jrj-525p-826v
+      - CVE-2021-39150               High      fixed in 1.4.18                GHSA-cxfm-5m4g-x7xp
+      - CVE-2022-40151               High      fixed in 1.4.20                GHSA-f8cc-g7j8-xxpm
+      - CVE-2024-47072               High      fixed in 1.4.21                GHSA-hfq9-hggm-c56q
+      - CVE-2020-26259               Medium    fixed in 1.4.15                GHSA-jfvx-7wrx-43fh
+      - CVE-2020-26258               Medium    fixed in 1.4.15                GHSA-4cch-wxpw-8p28
+      - CVE-2021-21351               Medium    fixed in 1.4.16                GHSA-hrcp-8f3q-4w2c
+      - CVE-2021-21346               Medium    fixed in 1.4.16                GHSA-4hrm-m67v-5cxr
+      - CVE-2021-21344               Medium    fixed in 1.4.16                GHSA-59jw-jqf4-3wq3
+      - CVE-2021-21345               Medium    fixed in 1.4.16                GHSA-hwpc-8xqv-jvj4
+      - CVE-2021-21349               Medium    fixed in 1.4.16                GHSA-f6hm-88x3-mfjv
+      - CVE-2021-21342               Medium    fixed in 1.4.16                GHSA-hvv8-336g-rx3m
+      - CVE-2021-21343               Medium    fixed in 1.4.16                GHSA-74cv-f58x-f9wf
+      - CVE-2021-21347               Medium    fixed in 1.4.16                GHSA-qpfq-ph7r-qv6f
+      - CVE-2021-21350               Medium    fixed in 1.4.16                GHSA-43gc-mjxg-gvrq
+      - CVE-2021-21348               Medium    fixed in 1.4.16                GHSA-56p8-3fh9-4cvq
+      - CVE-2021-39140               Medium    fixed in 1.4.18                GHSA-6wf9-jmg9-vxcc
+  => 1 fix available, 0 partial fix, 0 no fix
+
+--- nodegoat (41 vulnerable packages) ---
+package                            version          vulns crit high  med  low  fix status     upgrade to
+minimist                           0.0.8                4    2    -    2    -  fix available  0.2.4
+      - CVE-2021-44906               Critical  fixed in 0.2.4                 GHSA-xvch-5gv4-984h
+      - CVE-2021-44906               Critical  fixed in 0.2.4                 GHSA-xvch-5gv4-984h
+      - CVE-2020-7598                Medium    fixed in 0.2.1                 GHSA-vh95-rmgr-6w4m
+      - CVE-2020-7598                Medium    fixed in 0.2.1                 GHSA-vh95-rmgr-6w4m
+fsevents                           1.2.9                2    2    -    -    -  fix available  1.2.11
+      - CVE-2023-45311               Critical  fixed in 1.2.11                GHSA-8r6j-v8pm-fqw3
+      - GHSA-xv2f-5jw4-v95m          Critical  fixed in 1.2.11                
+tar                                4.4.8               18    1   13    4    -  fix available  7.5.21
+      - CVE-2026-59873               Critical  fixed in 7.5.19                GHSA-23hp-3jrh-7fpw
+      - CVE-2021-32804               High      fixed in 4.4.14                GHSA-3jfq-g458-7qm9
+      - CVE-2021-32803               High      fixed in 4.4.15                GHSA-r628-mhmh-qjhw
+      - CVE-2021-37701               High      fixed in 4.4.16                GHSA-9r2w-394v-53qc
+      - CVE-2021-37712               High      fixed in 4.4.18                GHSA-qq89-hq3f-393p
+      - CVE-2021-37713               High      fixed in 4.4.18                GHSA-5955-9wpr-37jh
+      - CVE-2026-24842               High      fixed in 7.5.7                 GHSA-34x7-hfp2-rc4v
+      - CVE-2026-73566               High      fixed in 7.5.21                GHSA-r292-9mhp-454m
+      - CVE-2026-59874               High      fixed in 7.5.18                GHSA-8x88-c5mf-7j5w
+      - CVE-2026-29786               High      fixed in 7.5.10                GHSA-qffp-2rhf-9h96
+      - CVE-2026-23745               High      fixed in 7.5.3                 GHSA-8qq5-rm4j-mr97
+      - CVE-2026-23950               High      fixed in 7.5.4                 GHSA-r6q2-hw4h-h46w
+      - CVE-2026-26960               High      fixed in 7.5.8                 GHSA-83g3-92jg-28cx
+      - CVE-2026-31802               High      fixed in 7.5.11                GHSA-9ppj-qmqm-q256
+      - CVE-2024-28863               Medium    fixed in 6.2.1                 GHSA-f5x3-32g6-xq36
+      - CVE-2026-59871               Medium    fixed in 7.5.18                GHSA-w8wr-v893-vjvp
+      - CVE-2026-59875               Medium    fixed in 7.5.17                GHSA-gvwx-54wh-qm9j
+      - CVE-2026-53655               Medium    fixed in 7.5.16                GHSA-vmf3-w455-68vh
+underscore                         1.9.1                2    1    1    -    -  fix available  1.13.8
+      - CVE-2021-23358               Critical  fixed in 1.12.1                GHSA-cf4h-3jhx-xvhq
+      - CVE-2026-27601               High      fixed in 1.13.8                GHSA-qpx9-hpmf-5gmw
+set-value                          0.4.3                2    1    1    -    -  fix available  2.0.1
+      - CVE-2019-10747               Critical  fixed in 2.0.1                 GHSA-4g88-fppr-53pp
+      - CVE-2021-23440               High      fixed in 2.0.1                 GHSA-4jqc-8m5r-9rpr
+set-value                          2.0.0                2    1    1    -    -  fix available  2.0.1
+      - CVE-2019-10747               Critical  fixed in 2.0.1                 GHSA-4g88-fppr-53pp
+      - CVE-2021-23440               High      fixed in 2.0.1                 GHSA-4jqc-8m5r-9rpr
+minimist                           0.0.10               2    1    -    1    -  fix available  0.2.4
+      - CVE-2021-44906               Critical  fixed in 0.2.4                 GHSA-xvch-5gv4-984h
+      - CVE-2020-7598                Medium    fixed in 0.2.1                 GHSA-vh95-rmgr-6w4m
+minimist                           1.2.0                2    1    -    1    -  fix available  1.2.6
+      - CVE-2021-44906               Critical  fixed in 1.2.6                 GHSA-xvch-5gv4-984h
+      - CVE-2020-7598                Medium    fixed in 1.2.3                 GHSA-vh95-rmgr-6w4m
+bson                               1.0.9                2    1    -    1    -  fix available  1.1.4
+      - CVE-2020-7610                Critical  fixed in 1.1.4                 GHSA-v8w9-2789-6hhr
+      - CVE-2019-2391                Medium    fixed in 1.1.4                 GHSA-4jwp-vfvf-657p
+minimist                           1.2.5                1    1    -    -    -  fix available  1.2.6
+      - CVE-2021-44906               Critical  fixed in 1.2.6                 GHSA-xvch-5gv4-984h
+mixin-deep                         1.3.1                1    1    -    -    -  fix available  1.3.2
+      - CVE-2019-10746               Critical  fixed in 1.3.2                 GHSA-fhjf-83wg-r2j9
+proxy-addr                         2.0.4                1    1    -    -    -  fix available  2.0.8
+      - CVE-2026-90711               Critical  fixed in 2.0.8                 GHSA-jqcg-44mw-7w3h
+brace-expansion                    1.1.11              16    -   10    4    2  fix available  1.1.21
+      - CVE-2026-69152               High      fixed in 1.1.18                GHSA-rgw5-rvv9-x895
+      - CVE-2026-69152               High      fixed in 1.1.18                GHSA-rgw5-rvv9-x895
+      - CVE-2026-14257               High      fixed in 1.1.17                GHSA-mh99-v99m-4gvg
+      - CVE-2026-14257               High      fixed in 1.1.17                GHSA-mh99-v99m-4gvg
+      - CVE-2026-102276              High      fixed in 1.1.19                GHSA-6j4f-fj2g-mc7p
+      - CVE-2026-102276              High      fixed in 1.1.19                GHSA-6j4f-fj2g-mc7p
+      - CVE-2026-102278              High      fixed in 1.1.20                GHSA-qhr7-859c-m2p7
+      - CVE-2026-102278              High      fixed in 1.1.20                GHSA-qhr7-859c-m2p7
+      - CVE-2026-13149               High      fixed in 1.1.16                GHSA-3jxr-9vmj-r5cp
+      - CVE-2026-13149               High      fixed in 1.1.16                GHSA-3jxr-9vmj-r5cp
+      - CVE-2026-33750               Medium    fixed in 1.1.13                GHSA-f886-m6hf-6m8v
+      - CVE-2026-33750               Medium    fixed in 1.1.13                GHSA-f886-m6hf-6m8v
+      - CVE-2026-102277              Medium    fixed in 1.1.21                GHSA-q2hr-2g5m-vwhr
+      - CVE-2026-102277              Medium    fixed in 1.1.21                GHSA-q2hr-2g5m-vwhr
+      - CVE-2025-5889                Low       fixed in 1.1.12                GHSA-v6h2-p8h4-qcjw
+      - CVE-2025-5889                Low       fixed in 1.1.12                GHSA-v6h2-p8h4-qcjw
+minimatch                          3.0.4                8    -    8    -    -  fix available  3.1.4
+      - CVE-2022-3517                High      fixed in 3.0.5                 GHSA-f8q6-p94x-37v3
+      - CVE-2022-3517                High      fixed in 3.0.5                 GHSA-f8q6-p94x-37v3
+      - CVE-2026-26996               High      fixed in 3.1.3                 GHSA-3ppc-4f35-3m26
+      - CVE-2026-26996               High      fixed in 3.1.3                 GHSA-3ppc-4f35-3m26
+      - CVE-2026-27903               High      fixed in 3.1.3                 GHSA-7r86-cg39-jmmj
+      - CVE-2026-27903               High      fixed in 3.1.3                 GHSA-7r86-cg39-jmmj
+      - CVE-2026-27904               High      fixed in 3.1.4                 GHSA-23c5-xmqv-rm74
+      - CVE-2026-27904               High      fixed in 3.1.4                 GHSA-23c5-xmqv-rm74
+marked                             0.3.5                6    -    3    3    -  fix available  4.0.10
+      - CVE-2022-21680               High      fixed in 4.0.10                GHSA-rrrm-qjm4-v8hf
+      - CVE-2022-21681               High      fixed in 4.0.10                GHSA-5v2h-r2cx-5xgj
+      - CVE-2017-16114               High      fixed in 0.3.9                 GHSA-x5pg-88wf-qq4p
+      - CVE-2017-1000427             Medium    fixed in 0.3.7                 GHSA-7px7-7xjx-hxm8
+      - CVE-2016-10531               Medium    fixed in 0.3.6                 GHSA-vfvf-mqq8-rwqc
+      - CVE-2018-25110               Medium    fixed in 0.3.17                GHSA-p9wx-2529-fp83
+path-to-regexp                     0.1.7                3    -    3    -    -  fix available  0.1.13
+      - CVE-2024-45296               High      fixed in 0.1.10                GHSA-9wv6-86v2-598j
+      - CVE-2024-52798               High      fixed in 0.1.12                GHSA-rhx6-c78j-4q9w
+      - CVE-2026-4867                High      fixed in 0.1.13                GHSA-37ch-88jc-xwx2
+ini                                1.3.5                2    -    2    -    -  fix available  1.3.6
+      - CVE-2020-7788                High      fixed in 1.3.6                 GHSA-qqgx-2p2h-9c37
+      - CVE-2020-7788                High      fixed in 1.3.6                 GHSA-qqgx-2p2h-9c37
+braces                             2.3.2                2    -    2    -    -  partial fix    3.0.3
+      - CVE-2024-4068                High      fixed in 3.0.3                 GHSA-grv7-fg5c-xmjg
+      - CVE-2026-93687               High      no fix (not-fixed)             GHSA-vfj7-8cjw-p6xm
+qs                                 6.5.2                3    -    1    2    -  fix available  6.16.0
+      - CVE-2022-24999               High      fixed in 6.5.3                 GHSA-hrpp-h998-j3pp
+      - CVE-2026-82417               Medium    fixed in 6.16.0                GHSA-4mjr-xmp4-gh2g
+      - CVE-2025-15284               Medium    fixed in 6.14.1                GHSA-6rw7-vpxm-498p
+decode-uri-component               0.2.0                2    -    1    1    -  fix available  0.5.0
+      - CVE-2022-38900               High      fixed in 0.2.1                 GHSA-w573-4hg7-7wgq
+      - CVE-2026-45822               Medium    fixed in 0.5.0                 GHSA-vcc3-ghjq-m6fr
+debug                              2.2.0                2    -    1    -    1  fix available  2.6.9
+      - CVE-2017-20165               High      fixed in 2.6.9                 GHSA-9vvw-cc9w-f27h
+      - CVE-2017-16137               Low       fixed in 2.6.9                 GHSA-gxpj-cx7g-858c
+body-parser                        1.18.3               2    -    1    -    1  fix available  1.20.6
+      - CVE-2024-45590               High      fixed in 1.20.3                GHSA-qwcr-r2fm-qrc7
+      - CVE-2026-12590               Low       fixed in 1.20.6                GHSA-v422-hmwv-36x6
+y18n                               3.2.1                1    -    1    -    -  fix available  3.2.2
+      - CVE-2020-7774                High      fixed in 3.2.2                 GHSA-c4w7-xm78-47vh
+semver                             5.6.0                1    -    1    -    -  fix available  5.7.2
+      - CVE-2022-25883               High      fixed in 5.7.2                 GHSA-c2qf-rxjj-qqgw
+semver                             5.7.0                1    -    1    -    -  fix available  5.7.2
+      - CVE-2022-25883               High      fixed in 5.7.2                 GHSA-c2qf-rxjj-qqgw
+uglify-js                          2.4.24               1    -    1    -    -  fix available  2.6.0
+      - CVE-2015-8858                High      fixed in 2.6.0                 GHSA-c9f4-xj24-8jqx
+kind-of                            6.0.2                1    -    1    -    -  fix available  6.0.3
+      - CVE-2019-20149               High      fixed in 6.0.3                 GHSA-6c8f-qphg-qjgp
+nconf                              0.10.0               1    -    1    -    -  fix available  0.11.4
+      - CVE-2022-21803               High      fixed in 0.11.4                GHSA-6xwr-q98w-rvg7
+nconf                              0.6.9                1    -    1    -    -  fix available  0.11.4
+      - CVE-2022-21803               High      fixed in 0.11.4                GHSA-6xwr-q98w-rvg7
+i                                  0.3.6                1    -    1    -    -  fix available  0.3.7
+      - CVE-2021-3820                High      fixed in 0.3.7                 GHSA-x55w-vjjp-222r
+swig                               1.4.2                1    -    1    -    -  no fix         -
+      - CVE-2023-25345               High      no fix (not-fixed)             GHSA-2rq5-699j-x7p6
+mongodb                            2.2.36               1    -    1    -    -  fix available  3.1.13
+      - GHSA-mh5c-679w-hh4r          High      fixed in 3.1.13                
+express                            4.16.4               2    -    -    1    1  fix available  4.20.0
+      - CVE-2024-29041               Medium    fixed in 4.19.2                GHSA-rv95-896h-c2vc
+      - CVE-2024-43796               Low       fixed in 4.20.0                GHSA-qw6h-vgh9-j6wx
+debug                              4.1.1                1    -    -    -    1  fix available  4.3.1
+      - CVE-2017-16137               Low       fixed in 4.3.1                 GHSA-gxpj-cx7g-858c
+micromatch                         3.1.10               1    -    -    1    -  fix available  4.0.8
+      - CVE-2024-4067                Medium    fixed in 4.0.8                 GHSA-952p-6rrq-rcjv
+ms                                 0.7.1                1    -    -    1    -  fix available  2.0.0
+      - CVE-2017-20162               Medium    fixed in 2.0.0                 GHSA-w9mr-4mfr-499f
+cookie                             0.3.1                1    -    -    -    1  fix available  0.7.0
+      - CVE-2024-47764               Low       fixed in 0.7.0                 GHSA-pxg6-pf52-xh8x
+serve-static                       1.13.2               1    -    -    -    1  fix available  1.16.0
+      - CVE-2024-43800               Low       fixed in 1.16.0                GHSA-cm22-4g7w-348p
+send                               0.16.2               1    -    -    -    1  fix available  0.19.0
+      - CVE-2024-43799               Low       fixed in 0.19.0                GHSA-m6fv-jmcg-4jfg
+on-headers                         1.0.1                1    -    -    -    1  fix available  1.1.0
+      - CVE-2025-7339                Low       fixed in 1.1.0                 GHSA-76c9-3jph-rj3q
+helmet-csp                         1.2.2                1    -    -    1    -  fix available  2.9.1
+      - GHSA-c3m8-x3cg-qm2c          Medium    fixed in 2.9.1                 
+  => 39 fix available, 1 partial fix, 1 no fix
+
+--- pygoat (34 vulnerable packages) ---
+package                            version          vulns crit high  med  low  fix status     upgrade to
+pillow                             8.0.0               68    7   43   17    1  fix available  13.0.0
+      - CVE-2022-22817               Critical  fixed in 9.0.1                 GHSA-8vj2-vxx3-667w
+      - CVE-2021-34552               Critical  fixed in 8.3.0                 GHSA-7534-mm45-c74v
+      - CVE-2021-25289               Critical  fixed in 8.1.1                 GHSA-57h3-9rgr-c24m
+      - CVE-2023-50447               Critical  fixed in 10.2.0                GHSA-3f63-hfp8-52jq
+      - CVE-2026-112393              Critical  fixed in 13.0.0                GHSA-332p-7hrc-92wf
+      - CVE-2026-112900              Critical  fixed in 13.0.0                GHSA-w889-685w-c8fh
+      - CVE-2026-112403              Critical  fixed in 13.0.0                GHSA-8g5g-8vmr-9782
+      - CVE-2023-4863                High      fixed in 10.0.1                GHSA-j7hp-h8jx-5ppr
+      - CVE-2021-27922               High      fixed in 8.1.2                 GHSA-3wvg-mj6g-m9cv
+      - CVE-2021-23437               High      fixed in 8.3.2                 GHSA-98vv-pw6r-q6q4
+      - CVE-2021-27921               High      fixed in 8.1.2                 GHSA-f4w8-cv6p-x6r5
+      - CVE-2021-25287               High      fixed in 8.2.0                 GHSA-77gc-v2xv-rvvh
+      - CVE-2021-27923               High      fixed in 8.1.2                 GHSA-95q3-8gr9-gm8w
+      - CVE-2022-24303               High      fixed in 9.0.1                 GHSA-9j59-75qj-795w
+      - CVE-2021-25288               High      fixed in 8.2.0                 GHSA-rwv7-3v45-hg29
+      - CVE-2021-28676               High      fixed in 8.2.0                 GHSA-7r7m-5h27-29hp
+      - CVE-2021-25290               High      fixed in 8.1.1                 GHSA-8xjq-8fcg-g5hw
+      - CVE-2021-28677               High      fixed in 8.2.0                 GHSA-q5hq-fp76-qmrc
+      - CVE-2020-35654               High      fixed in 8.1.0                 GHSA-vqcj-wrf2-7v73
+      - CVE-2021-25293               High      fixed in 8.1.1                 GHSA-p43w-g3c5-g5mq
+      - CVE-2020-35653               High      fixed in 8.1.0                 GHSA-f5g8-5qq7-938w
+      - CVE-2021-25291               High      fixed in 8.2.0                 GHSA-mvg9-xffr-p774
+      - CVE-2023-44271               High      fixed in 10.0.0                GHSA-8ghj-p4vj-mr35
+      - CVE-2022-45198               High      fixed in 9.2.0                 GHSA-m2vv-5vj5-2hm7
+      - CVE-2024-28219               High      fixed in 10.3.0                GHSA-44wm-f244-xhp3
+      - CVE-2021-28675               High      fixed in 8.2.0                 GHSA-g6rj-rv7j-xwp4
+      - CVE-2026-54058               High      fixed in 12.3.0                GHSA-62p4-gmf7-7g93
+      - CVE-2026-112397              High      fixed in 13.0.0                GHSA-58r4-6rv3-gfh8
+      - CVE-2026-112402              High      fixed in 13.0.0                GHSA-7mwm-ghpf-9vrm
+      - CVE-2026-59197               High      fixed in 12.3.0                GHSA-xj96-63gp-2gmr
+      - CVE-2026-55379               High      fixed in 12.3.0                GHSA-45hq-cxwh-f6vc
+      - CVE-2026-54060               High      fixed in 12.3.0                GHSA-5x94-69rx-g8h2
+      - CVE-2026-55380               High      fixed in 12.3.0                GHSA-phj9-mv4w-65pm
+      - CVE-2026-54059               High      fixed in 12.3.0                GHSA-8v84-f9pq-wr9x
+      - CVE-2026-59199               High      fixed in 12.3.0                GHSA-6r8x-57c9-28j4
+      - CVE-2026-59205               High      fixed in 12.3.0                GHSA-9hw9-ch79-4vh6
+      - CVE-2026-59200               High      fixed in 12.3.0                GHSA-jjj6-mw9f-p565
+      - CVE-2026-112896              High      fixed in 13.0.0                GHSA-pchr-8j38-3x4p
+      - CVE-2026-112897              High      fixed in 13.0.0                GHSA-q45j-58j2-45rg
+      - CVE-2026-112892              High      fixed in 13.0.0                GHSA-gg2r-wvfm-q9rx
+      - CVE-2026-112894              High      fixed in 13.0.0                GHSA-jg86-v3jv-hrpm
+      - CVE-2026-112895              High      fixed in 13.0.0                GHSA-p4wg-p73j-c528
+      - CVE-2026-112406              High      fixed in 13.0.0                GHSA-f2g6-542v-9j58
+      - CVE-2026-112390              High      fixed in 13.0.0                GHSA-22hg-r758-rrw9
+      - CVE-2026-112392              High      fixed in 13.0.0                GHSA-27h8-gf7j-v5hc
+      - CVE-2026-96642               High      fixed in 13.0.0                GHSA-3j72-p6qg-6xp7
+      - CVE-2026-96644               High      fixed in 13.0.0                GHSA-9v9v-9qvf-h2hj
+      - CVE-2026-96637               High      fixed in 13.0.0                GHSA-g842-9rc4-69pw
+      - CVE-2026-96640               High      fixed in 13.0.0                GHSA-mrfp-p49p-3hf2
+      - CVE-2026-112902              High      fixed in 13.0.0                GHSA-xvh5-g6gv-559v
+      - CVE-2022-22815               Medium    fixed in 9.0.0                 GHSA-pw3c-h7wp-cvhx
+      - CVE-2022-22816               Medium    fixed in 9.0.0                 GHSA-xrcv-f9gm-v42c
+      - CVE-2021-25292               Medium    fixed in 8.1.1                 GHSA-9hx2-hgq2-2g4f
+      - CVE-2020-35655               Medium    fixed in 8.1.0                 GHSA-hf64-x4gq-p99h
+      - CVE-2021-28678               Medium    fixed in 8.2.0                 GHSA-hjfx-8p6c-g7gx
+      - CVE-2026-112401              Medium    fixed in 13.0.0                GHSA-74r2-7ff9-mjj2
+      - CVE-2026-59198               Medium    fixed in 12.3.0                GHSA-fj7v-r99m-22gq
+      - CVE-2026-112901              Medium    fixed in 13.0.0                GHSA-xgh8-jp6q-p5x8
+      - CVE-2026-112391              Medium    fixed in 13.0.0                GHSA-254f-3936-288h
+      - CVE-2026-112394              Medium    fixed in 13.0.0                GHSA-4558-3h8r-v8xp
+      - CVE-2026-42310               Medium    fixed in 12.2.0                GHSA-r73j-pqj5-w3x7
+      - CVE-2026-55798               Medium    fixed in 12.3.0                GHSA-4x4j-2g7c-83w6
+      - CVE-2026-42308               Medium    fixed in 12.2.0                GHSA-wjx4-4jcj-g98j
+      - CVE-2026-96641               Medium    fixed in 13.0.0                GHSA-4rm8-3hmm-39fg
+      - GHSA-jgpv-4h4c-xhw3          Medium    fixed in 8.1.2                 
+      - CVE-2026-96636               Medium    fixed in 13.0.0                GHSA-p8hx-v2p6-rp84
+      - CVE-2026-112899              Medium    fixed in 13.0.0                GHSA-vx6w-vv9f-6gvg
+      - GHSA-4fx9-vc88-q2xc          Low       fixed in 9.0.0                 
+pyyaml                             5.1                  6    6    -    -    -  fix available  5.4
+      - CVE-2020-14343               Critical  fixed in 5.4                   GHSA-8q59-q68h-6hv4
+      - CVE-2020-14343               Critical  fixed in 5.4                   GHSA-8q59-q68h-6hv4
+      - CVE-2020-1747                Critical  fixed in 5.3.1                 GHSA-6757-jp84-gxfx
+      - CVE-2020-1747                Critical  fixed in 5.3.1                 GHSA-6757-jp84-gxfx
+      - CVE-2019-20477               Critical  fixed in 5.2                   GHSA-3pqx-4fqf-j49f
+      - CVE-2019-20477               Critical  fixed in 5.2                   GHSA-3pqx-4fqf-j49f
+pillow                             12.1.0              57    4   35   18    -  fix available  13.0.0
+      - CVE-2026-112393              Critical  fixed in 13.0.0                GHSA-332p-7hrc-92wf
+      - CVE-2026-112900              Critical  fixed in 13.0.0                GHSA-w889-685w-c8fh
+      - CVE-2026-112403              Critical  fixed in 13.0.0                GHSA-8g5g-8vmr-9782
+      - CVE-2026-96639               Critical  fixed in 13.0.0                GHSA-v9pv-5gc8-w2m6
+      - CVE-2026-40192               High      fixed in 12.2.0                GHSA-whj4-6x5x-4v2j
+      - CVE-2026-54058               High      fixed in 12.3.0                GHSA-62p4-gmf7-7g93
+      - CVE-2026-25990               High      fixed in 12.1.1                GHSA-cfh3-3jmp-rvhc
+      - CVE-2026-112397              High      fixed in 13.0.0                GHSA-58r4-6rv3-gfh8
+      - CVE-2026-112402              High      fixed in 13.0.0                GHSA-7mwm-ghpf-9vrm
+      - CVE-2026-59197               High      fixed in 12.3.0                GHSA-xj96-63gp-2gmr
+      - CVE-2026-55379               High      fixed in 12.3.0                GHSA-45hq-cxwh-f6vc
+      - CVE-2026-54060               High      fixed in 12.3.0                GHSA-5x94-69rx-g8h2
+      - CVE-2026-55380               High      fixed in 12.3.0                GHSA-phj9-mv4w-65pm
+      - CVE-2026-59204               High      fixed in 12.3.0                GHSA-vjc4-5qp5-m44j
+      - CVE-2026-54059               High      fixed in 12.3.0                GHSA-8v84-f9pq-wr9x
+      - CVE-2026-59199               High      fixed in 12.3.0                GHSA-6r8x-57c9-28j4
+      - CVE-2026-59205               High      fixed in 12.3.0                GHSA-9hw9-ch79-4vh6
+      - CVE-2026-59200               High      fixed in 12.3.0                GHSA-jjj6-mw9f-p565
+      - CVE-2026-112404              High      fixed in 13.0.0                GHSA-c6hw-5grf-ff96
+      - CVE-2026-112896              High      fixed in 13.0.0                GHSA-pchr-8j38-3x4p
+      - CVE-2026-112399              High      fixed in 13.0.0                GHSA-5xm2-6676-qcp9
+      - CVE-2026-112400              High      fixed in 13.0.0                GHSA-65qm-jvmh-6pqg
+      - CVE-2026-112897              High      fixed in 13.0.0                GHSA-q45j-58j2-45rg
+      - CVE-2026-112892              High      fixed in 13.0.0                GHSA-gg2r-wvfm-q9rx
+      - CVE-2026-112405              High      fixed in 13.0.0                GHSA-cp9v-662q-vvx9
+      - CVE-2026-112894              High      fixed in 13.0.0                GHSA-jg86-v3jv-hrpm
+      - CVE-2026-112895              High      fixed in 13.0.0                GHSA-p4wg-p73j-c528
+      - CVE-2026-112406              High      fixed in 13.0.0                GHSA-f2g6-542v-9j58
+      - CVE-2026-112390              High      fixed in 13.0.0                GHSA-22hg-r758-rrw9
+      - CVE-2026-112893              High      fixed in 13.0.0                GHSA-j4m9-6w36-pw47
+      - CVE-2026-112392              High      fixed in 13.0.0                GHSA-27h8-gf7j-v5hc
+      - CVE-2026-42311               High      fixed in 12.2.0                GHSA-pwv6-vv43-88gr
+      - CVE-2026-96642               High      fixed in 13.0.0                GHSA-3j72-p6qg-6xp7
+      - CVE-2026-96644               High      fixed in 13.0.0                GHSA-9v9v-9qvf-h2hj
+      - CVE-2026-96643               High      fixed in 13.0.0                GHSA-g4qv-2jxx-769h
+      - CVE-2026-96778               High      fixed in 13.0.0                GHSA-g7cr-3p24-7wf7
+      - CVE-2026-96637               High      fixed in 13.0.0                GHSA-g842-9rc4-69pw
+      - CVE-2026-96640               High      fixed in 13.0.0                GHSA-mrfp-p49p-3hf2
+      - CVE-2026-112902              High      fixed in 13.0.0                GHSA-xvh5-g6gv-559v
+      - CVE-2026-112396              Medium    fixed in 13.0.0                GHSA-4rr5-89j8-mwwm
+      - CVE-2026-112401              Medium    fixed in 13.0.0                GHSA-74r2-7ff9-mjj2
+      - CVE-2026-112891              Medium    fixed in 13.0.0                GHSA-fc9g-5qg7-mf45
+      - CVE-2026-59203               Medium    fixed in 12.3.0                GHSA-pg7v-jwj7-p798
+      - CVE-2026-59198               Medium    fixed in 12.3.0                GHSA-fj7v-r99m-22gq
+      - CVE-2026-112898              Medium    fixed in 13.0.0                GHSA-rfgq-q3w2-pmv2
+      - CVE-2026-112901              Medium    fixed in 13.0.0                GHSA-xgh8-jp6q-p5x8
+      - CVE-2026-112391              Medium    fixed in 13.0.0                GHSA-254f-3936-288h
+      - CVE-2026-112394              Medium    fixed in 13.0.0                GHSA-4558-3h8r-v8xp
+      - CVE-2026-112395              Medium    fixed in 13.0.0                GHSA-462x-pgg6-55fp
+      - CVE-2026-42309               Medium    fixed in 12.2.0                GHSA-5xmw-vc9v-4wf2
+      - CVE-2026-42310               Medium    fixed in 12.2.0                GHSA-r73j-pqj5-w3x7
+      - CVE-2026-55798               Medium    fixed in 12.3.0                GHSA-4x4j-2g7c-83w6
+      - CVE-2026-42308               Medium    fixed in 12.2.0                GHSA-wjx4-4jcj-g98j
+      - CVE-2026-96638               Medium    fixed in 13.0.0                GHSA-24rc-8hj2-v98c
+      - CVE-2026-96641               Medium    fixed in 13.0.0                GHSA-4rm8-3hmm-39fg
+      - CVE-2026-96636               Medium    fixed in 13.0.0                GHSA-p8hx-v2p6-rp84
+      - CVE-2026-112899              Medium    fixed in 13.0.0                GHSA-vx6w-vv9f-6gvg
+django                             4.2                 51    3   17   20   11  fix available  5.2.17
+      - CVE-2025-64459               Critical  fixed in 4.2.26                GHSA-frmv-pr5f-9mcr
+      - CVE-2024-42005               Critical  fixed in 4.2.15                GHSA-pv4p-cwwg-4rph
+      - CVE-2023-31047               Critical  fixed in 4.2.1                 GHSA-r3xc-prgr-mg9p
+      - CVE-2023-46695               High      fixed in 4.2.7                 GHSA-qmf9-6jqf-j8fq
+      - CVE-2024-39614               High      fixed in 4.2.14                GHSA-f6f8-9mx6-9mx2
+      - CVE-2025-57833               High      fixed in 4.2.24                GHSA-6w2r-r2m5-xq5w
+      - CVE-2026-1207                High      fixed in 4.2.28                GHSA-mwm9-4648-f68q
+      - CVE-2023-36053               High      fixed in 4.2.3                 GHSA-jh3w-4vvf-mjgr
+      - CVE-2025-64458               High      fixed in 4.2.26                GHSA-qw25-v68c-qjf3
+      - CVE-2024-24680               High      fixed in 4.2.10                GHSA-xxj9-f6rv-m3x4
+      - CVE-2024-53908               High      fixed in 4.2.17                GHSA-m9g8-fxxm-xg86
+      - CVE-2023-43665               High      fixed in 4.2.6                 GHSA-h8gc-pgj2-vjm3
+      - CVE-2024-38875               High      fixed in 4.2.14                GHSA-qg2p-9jwr-mmqf
+      - CVE-2026-15307               High      fixed in 5.2.17                GHSA-wvqv-fj8w-qmhm
+      - CVE-2026-25673               High      fixed in 4.2.29                GHSA-8p8v-wh79-9r56
+      - CVE-2024-39330               High      fixed in 4.2.14                GHSA-9jmf-237g-qf46
+      - CVE-2026-1287                High      fixed in 4.2.28                GHSA-gvg8-93h5-g6qq
+      - CVE-2026-33034               High      fixed in 4.2.30                GHSA-933h-hp56-hf7m
+      - CVE-2025-59681               High      fixed in 4.2.25                GHSA-hpr9-3m2g-3j9p
+      - CVE-2026-3902                High      fixed in 4.2.30                GHSA-mvfq-ggxm-9mc5
+      - CVE-2024-45230               Medium    fixed in 4.2.16                GHSA-5hgc-2vfp-mqvc
+      - CVE-2025-32873               Medium    fixed in 4.2.21                GHSA-8j24-cjrq-gr2m
+      - CVE-2025-64460               Medium    fixed in 4.2.27                GHSA-vrcr-9hj9-jcg6
+      - CVE-2024-27351               Medium    fixed in 4.2.11                GHSA-vm8q-m57g-pff3
+      - CVE-2023-41164               Medium    fixed in 4.2.5                 GHSA-7h4p-27mh-hmrw
+      - CVE-2024-53907               Medium    fixed in 4.2.17                GHSA-8498-2h75-472j
+      - CVE-2024-41990               Medium    fixed in 4.2.15                GHSA-795c-9xpc-xw6g
+      - CVE-2024-56374               Medium    fixed in 4.2.18                GHSA-qcgg-j2x8-h9g8
+      - CVE-2024-41989               Medium    fixed in 4.2.15                GHSA-jh75-99hh-qvx9
+      - CVE-2026-15830               Medium    fixed in 5.2.17                GHSA-q238-5cxm-5c9h
+      - CVE-2024-41991               Medium    fixed in 4.2.15                GHSA-r836-hh6v-rg5g
+      - CVE-2026-33033               Medium    fixed in 4.2.30                GHSA-5mf9-h53q-7mhq
+      - CVE-2024-39329               Medium    fixed in 4.2.14                GHSA-x7q2-wr7g-xqmf
+      - CVE-2026-1312                Medium    fixed in 4.2.28                GHSA-6426-9fv3-65x8
+      - CVE-2025-13372               Medium    fixed in 4.2.27                GHSA-rqw2-ghq9-44m7
+      - CVE-2025-26699               Medium    fixed in 4.2.20                GHSA-p3fp-8748-vqfq
+      - CVE-2024-45231               Medium    fixed in 4.2.16                GHSA-rrqc-c2jx-6jgv
+      - CVE-2025-48432               Medium    fixed in 4.2.22                GHSA-7xr5-9hcq-chf9
+      - CVE-2026-53877               Medium    fixed in 5.2.16                GHSA-crhf-3pfg-w68w
+      - CVE-2026-53878               Medium    fixed in 5.2.16                GHSA-8qcx-xf44-272x
+      - CVE-2025-14550               Low       fixed in 4.2.28                GHSA-33mw-q7rj-mjwj
+      - CVE-2026-1285                Low       fixed in 4.2.28                GHSA-4rrr-2h4v-f3j9
+      - CVE-2025-59682               Low       fixed in 4.2.25                GHSA-q95w-c7qg-hrff
+      - CVE-2025-13473               Low       fixed in 4.2.28                GHSA-2mcm-79hx-8fxw
+      - CVE-2026-4277                Low       fixed in 4.2.30                GHSA-pwjp-ccjc-ghwg
+      - CVE-2026-48588               Low       fixed in 5.2.16                GHSA-3h9f-r86x-qvjx
+      - CVE-2026-48587               Low       fixed in 5.2.15                GHSA-923m-gv2p-w5qp
+      - CVE-2026-8404                Low       fixed in 5.2.15                GHSA-8cjm-8mp7-r2xf
+      - CVE-2026-25674               Low       fixed in 4.2.29                GHSA-mjgh-79qc-68w3
+      - CVE-2026-4292                Low       fixed in 4.2.30                GHSA-mmwr-2jhp-mc7j
+      - CVE-2026-6873                Low       fixed in 5.2.15                GHSA-h7pc-vwp9-298g
+django                             3.2.18              20    2    7    7    4  fix available  5.2.17
+      - CVE-2025-64459               Critical  fixed in 4.2.26                GHSA-frmv-pr5f-9mcr
+      - CVE-2023-31047               Critical  fixed in 3.2.19                GHSA-r3xc-prgr-mg9p
+      - CVE-2023-46695               High      fixed in 3.2.23                GHSA-qmf9-6jqf-j8fq
+      - CVE-2025-57833               High      fixed in 4.2.24                GHSA-6w2r-r2m5-xq5w
+      - CVE-2023-36053               High      fixed in 3.2.20                GHSA-jh3w-4vvf-mjgr
+      - CVE-2025-64458               High      fixed in 4.2.26                GHSA-qw25-v68c-qjf3
+      - CVE-2024-24680               High      fixed in 3.2.24                GHSA-xxj9-f6rv-m3x4
+      - CVE-2023-43665               High      fixed in 3.2.22                GHSA-h8gc-pgj2-vjm3
+      - CVE-2026-15307               High      fixed in 5.2.17                GHSA-wvqv-fj8w-qmhm
+      - CVE-2024-27351               Medium    fixed in 3.2.25                GHSA-vm8q-m57g-pff3
+      - CVE-2023-41164               Medium    fixed in 3.2.21                GHSA-7h4p-27mh-hmrw
+      - CVE-2026-15830               Medium    fixed in 5.2.17                GHSA-q238-5cxm-5c9h
+      - CVE-2024-45231               Medium    fixed in 4.2.16                GHSA-rrqc-c2jx-6jgv
+      - CVE-2025-48432               Medium    fixed in 4.2.22                GHSA-7xr5-9hcq-chf9
+      - CVE-2026-53877               Medium    fixed in 5.2.16                GHSA-crhf-3pfg-w68w
+      - CVE-2026-53878               Medium    fixed in 5.2.16                GHSA-8qcx-xf44-272x
+      - CVE-2026-48588               Low       fixed in 5.2.16                GHSA-3h9f-r86x-qvjx
+      - CVE-2026-48587               Low       fixed in 5.2.15                GHSA-923m-gv2p-w5qp
+      - CVE-2026-8404                Low       fixed in 5.2.15                GHSA-8cjm-8mp7-r2xf
+      - CVE-2026-6873                Low       fixed in 5.2.15                GHSA-h7pc-vwp9-298g
+pyjwt                              2.8.0               14    1    5    7    1  fix available  2.15.0
+      - CVE-2026-102268              Critical  fixed in 2.14.0                GHSA-ffc3-869f-jxw9
+      - CVE-2026-48526               High      fixed in 2.13.0                GHSA-xgmm-8j9v-c9wx
+      - CVE-2026-32597               High      fixed in 2.12.0                GHSA-752w-5fwx-jx9f
+      - CVE-2026-102271              High      fixed in 2.14.0                GHSA-p4g4-x82p-q773
+      - CVE-2026-102267              High      fixed in 2.14.0                GHSA-9v7f-9g4p-ffgj
+      - GHSA-pxh4-856f-4h89          High      fixed in 2.14.0                
+      - CVE-2026-101917              Medium    fixed in 2.14.0                GHSA-2gx3-rcp4-g85q
+      - CVE-2026-48525               Medium    fixed in 2.13.0                GHSA-w7vc-732c-9m39
+      - CVE-2026-101918              Medium    fixed in 2.15.0                GHSA-42vr-xj54-vc7v
+      - CVE-2026-48522               Medium    fixed in 2.13.0                GHSA-993g-76c3-p5m4
+      - CVE-2026-102270              Medium    fixed in 2.14.0                GHSA-jwrc-g2q2-pq5p
+      - CVE-2026-102269              Medium    fixed in 2.14.0                GHSA-hxm8-2xgr-2p9m
+      - CVE-2026-102275              Medium    fixed in 2.15.0                GHSA-x33g-cr3x-6449
+      - CVE-2026-48524               Low       fixed in 2.13.0                GHSA-fhv5-28vv-h8m8
+pyjwt                              2.4.0               13    1    5    6    1  fix available  2.15.0
+      - CVE-2026-102268              Critical  fixed in 2.14.0                GHSA-ffc3-869f-jxw9
+      - CVE-2026-48526               High      fixed in 2.13.0                GHSA-xgmm-8j9v-c9wx
+      - CVE-2026-32597               High      fixed in 2.12.0                GHSA-752w-5fwx-jx9f
+      - CVE-2026-102271              High      fixed in 2.14.0                GHSA-p4g4-x82p-q773
+      - CVE-2026-102267              High      fixed in 2.14.0                GHSA-9v7f-9g4p-ffgj
+      - GHSA-pxh4-856f-4h89          High      fixed in 2.14.0                
+      - CVE-2026-101917              Medium    fixed in 2.14.0                GHSA-2gx3-rcp4-g85q
+      - CVE-2026-101918              Medium    fixed in 2.15.0                GHSA-42vr-xj54-vc7v
+      - CVE-2026-48522               Medium    fixed in 2.13.0                GHSA-993g-76c3-p5m4
+      - CVE-2026-102270              Medium    fixed in 2.14.0                GHSA-jwrc-g2q2-pq5p
+      - CVE-2026-102269              Medium    fixed in 2.14.0                GHSA-hxm8-2xgr-2p9m
+      - CVE-2026-102275              Medium    fixed in 2.15.0                GHSA-x33g-cr3x-6449
+      - CVE-2026-48524               Low       fixed in 2.13.0                GHSA-fhv5-28vv-h8m8
+certifi                            2022.12.7            3    1    1    -    1  fix available  2026.10.19
+      - GHSA-6q48-6c7w-9gw2          Critical  fixed in 2026.10.19            
+      - CVE-2023-37920               High      fixed in 2023.7.22             GHSA-xqr8-7jwr-rhp7
+      - CVE-2024-39689               Low       fixed in 2024.7.4              GHSA-248v-346w-9cwc
+werkzeug                           2.0.1               70    -   14   49    7  fix available  3.1.9
+      - CVE-2024-34069               High      fixed in 3.0.3                 GHSA-2g68-c3qc-8985
+      - CVE-2024-34069               High      fixed in 3.0.3                 GHSA-2g68-c3qc-8985
+      - CVE-2024-34069               High      fixed in 3.0.3                 GHSA-2g68-c3qc-8985
+      - CVE-2024-34069               High      fixed in 3.0.3                 GHSA-2g68-c3qc-8985
+      - CVE-2024-34069               High      fixed in 3.0.3                 GHSA-2g68-c3qc-8985
+      - CVE-2024-34069               High      fixed in 3.0.3                 GHSA-2g68-c3qc-8985
+      - CVE-2024-34069               High      fixed in 3.0.3                 GHSA-2g68-c3qc-8985
+      - CVE-2023-25577               High      fixed in 2.2.3                 GHSA-xg9f-g7g7-2323
+      - CVE-2023-25577               High      fixed in 2.2.3                 GHSA-xg9f-g7g7-2323
+      - CVE-2023-25577               High      fixed in 2.2.3                 GHSA-xg9f-g7g7-2323
+      - CVE-2023-25577               High      fixed in 2.2.3                 GHSA-xg9f-g7g7-2323
+      - CVE-2023-25577               High      fixed in 2.2.3                 GHSA-xg9f-g7g7-2323
+      - CVE-2023-25577               High      fixed in 2.2.3                 GHSA-xg9f-g7g7-2323
+      - CVE-2023-25577               High      fixed in 2.2.3                 GHSA-xg9f-g7g7-2323
+      - CVE-2024-49767               Medium    fixed in 3.0.6                 GHSA-q34m-jh98-gwm2
+      - CVE-2024-49767               Medium    fixed in 3.0.6                 GHSA-q34m-jh98-gwm2
+      - CVE-2024-49767               Medium    fixed in 3.0.6                 GHSA-q34m-jh98-gwm2
+      - CVE-2024-49767               Medium    fixed in 3.0.6                 GHSA-q34m-jh98-gwm2
+      - CVE-2024-49767               Medium    fixed in 3.0.6                 GHSA-q34m-jh98-gwm2
+      - CVE-2024-49767               Medium    fixed in 3.0.6                 GHSA-q34m-jh98-gwm2
+      - CVE-2024-49767               Medium    fixed in 3.0.6                 GHSA-q34m-jh98-gwm2
+      - CVE-2023-46136               Medium    fixed in 2.3.8                 GHSA-hrfv-mqp8-q5rw
+      - CVE-2023-46136               Medium    fixed in 2.3.8                 GHSA-hrfv-mqp8-q5rw
+      - CVE-2023-46136               Medium    fixed in 2.3.8                 GHSA-hrfv-mqp8-q5rw
+      - CVE-2023-46136               Medium    fixed in 2.3.8                 GHSA-hrfv-mqp8-q5rw
+      - CVE-2023-46136               Medium    fixed in 2.3.8                 GHSA-hrfv-mqp8-q5rw
+      - CVE-2023-46136               Medium    fixed in 2.3.8                 GHSA-hrfv-mqp8-q5rw
+      - CVE-2023-46136               Medium    fixed in 2.3.8                 GHSA-hrfv-mqp8-q5rw
+      - CVE-2024-49766               Medium    fixed in 3.0.6                 GHSA-f9vj-2wh5-fj8j
+      - CVE-2024-49766               Medium    fixed in 3.0.6                 GHSA-f9vj-2wh5-fj8j
+      - CVE-2024-49766               Medium    fixed in 3.0.6                 GHSA-f9vj-2wh5-fj8j
+      - CVE-2024-49766               Medium    fixed in 3.0.6                 GHSA-f9vj-2wh5-fj8j
+      - CVE-2024-49766               Medium    fixed in 3.0.6                 GHSA-f9vj-2wh5-fj8j
+      - CVE-2024-49766               Medium    fixed in 3.0.6                 GHSA-f9vj-2wh5-fj8j
+      - CVE-2024-49766               Medium    fixed in 3.0.6                 GHSA-f9vj-2wh5-fj8j
+      - CVE-2026-27199               Medium    fixed in 3.1.6                 GHSA-29vq-49wr-vm6x
+      - CVE-2026-27199               Medium    fixed in 3.1.6                 GHSA-29vq-49wr-vm6x
+      - CVE-2026-27199               Medium    fixed in 3.1.6                 GHSA-29vq-49wr-vm6x
+      - CVE-2026-27199               Medium    fixed in 3.1.6                 GHSA-29vq-49wr-vm6x
+      - CVE-2026-27199               Medium    fixed in 3.1.6                 GHSA-29vq-49wr-vm6x
+      - CVE-2026-27199               Medium    fixed in 3.1.6                 GHSA-29vq-49wr-vm6x
+      - CVE-2026-27199               Medium    fixed in 3.1.6                 GHSA-29vq-49wr-vm6x
+      - CVE-2025-66221               Medium    fixed in 3.1.4                 GHSA-hgf8-39gv-g3f2
+      - CVE-2025-66221               Medium    fixed in 3.1.4                 GHSA-hgf8-39gv-g3f2
+      - CVE-2025-66221               Medium    fixed in 3.1.4                 GHSA-hgf8-39gv-g3f2
+      - CVE-2025-66221               Medium    fixed in 3.1.4                 GHSA-hgf8-39gv-g3f2
+      - CVE-2025-66221               Medium    fixed in 3.1.4                 GHSA-hgf8-39gv-g3f2
+      - CVE-2025-66221               Medium    fixed in 3.1.4                 GHSA-hgf8-39gv-g3f2
+      - CVE-2025-66221               Medium    fixed in 3.1.4                 GHSA-hgf8-39gv-g3f2
+      - CVE-2026-21860               Medium    fixed in 3.1.5                 GHSA-87hc-h4r5-73f7
+      - CVE-2026-21860               Medium    fixed in 3.1.5                 GHSA-87hc-h4r5-73f7
+      - CVE-2026-21860               Medium    fixed in 3.1.5                 GHSA-87hc-h4r5-73f7
+      - CVE-2026-21860               Medium    fixed in 3.1.5                 GHSA-87hc-h4r5-73f7
+      - CVE-2026-21860               Medium    fixed in 3.1.5                 GHSA-87hc-h4r5-73f7
+      - CVE-2026-21860               Medium    fixed in 3.1.5                 GHSA-87hc-h4r5-73f7
+      - CVE-2026-21860               Medium    fixed in 3.1.5                 GHSA-87hc-h4r5-73f7
+      - CVE-2026-102598              Medium    fixed in 3.1.9                 GHSA-g6x2-hccm-hh4m
+      - CVE-2026-102598              Medium    fixed in 3.1.9                 GHSA-g6x2-hccm-hh4m
+      - CVE-2026-102598              Medium    fixed in 3.1.9                 GHSA-g6x2-hccm-hh4m
+      - CVE-2026-102598              Medium    fixed in 3.1.9                 GHSA-g6x2-hccm-hh4m
+      - CVE-2026-102598              Medium    fixed in 3.1.9                 GHSA-g6x2-hccm-hh4m
+      - CVE-2026-102598              Medium    fixed in 3.1.9                 GHSA-g6x2-hccm-hh4m
+      - CVE-2026-102598              Medium    fixed in 3.1.9                 GHSA-g6x2-hccm-hh4m
+      - CVE-2023-23934               Low       fixed in 2.2.3                 GHSA-px8h-6qxv-m22q
+      - CVE-2023-23934               Low       fixed in 2.2.3                 GHSA-px8h-6qxv-m22q
+      - CVE-2023-23934               Low       fixed in 2.2.3                 GHSA-px8h-6qxv-m22q
+      - CVE-2023-23934               Low       fixed in 2.2.3                 GHSA-px8h-6qxv-m22q
+      - CVE-2023-23934               Low       fixed in 2.2.3                 GHSA-px8h-6qxv-m22q
+      - CVE-2023-23934               Low       fixed in 2.2.3                 GHSA-px8h-6qxv-m22q
+      - CVE-2023-23934               Low       fixed in 2.2.3                 GHSA-px8h-6qxv-m22q
+werkzeug                           2.3.7               64    -    8   56    -  fix available  3.1.9
+      - CVE-2024-34069               High      fixed in 3.0.3                 GHSA-2g68-c3qc-8985
+      - CVE-2024-34069               High      fixed in 3.0.3                 GHSA-2g68-c3qc-8985
+      - CVE-2024-34069               High      fixed in 3.0.3                 GHSA-2g68-c3qc-8985
+      - CVE-2024-34069               High      fixed in 3.0.3                 GHSA-2g68-c3qc-8985
+      - CVE-2024-34069               High      fixed in 3.0.3                 GHSA-2g68-c3qc-8985
+      - CVE-2024-34069               High      fixed in 3.0.3                 GHSA-2g68-c3qc-8985
+      - CVE-2024-34069               High      fixed in 3.0.3                 GHSA-2g68-c3qc-8985
+      - CVE-2024-34069               High      fixed in 3.0.3                 GHSA-2g68-c3qc-8985
+      - CVE-2024-49767               Medium    fixed in 3.0.6                 GHSA-q34m-jh98-gwm2
+      - CVE-2024-49767               Medium    fixed in 3.0.6                 GHSA-q34m-jh98-gwm2
+      - CVE-2024-49767               Medium    fixed in 3.0.6                 GHSA-q34m-jh98-gwm2
+      - CVE-2024-49767               Medium    fixed in 3.0.6                 GHSA-q34m-jh98-gwm2
+      - CVE-2024-49767               Medium    fixed in 3.0.6                 GHSA-q34m-jh98-gwm2
+      - CVE-2024-49767               Medium    fixed in 3.0.6                 GHSA-q34m-jh98-gwm2
+      - CVE-2024-49767               Medium    fixed in 3.0.6                 GHSA-q34m-jh98-gwm2
+      - CVE-2024-49767               Medium    fixed in 3.0.6                 GHSA-q34m-jh98-gwm2
+      - CVE-2023-46136               Medium    fixed in 2.3.8                 GHSA-hrfv-mqp8-q5rw
+      - CVE-2023-46136               Medium    fixed in 2.3.8                 GHSA-hrfv-mqp8-q5rw
+      - CVE-2023-46136               Medium    fixed in 2.3.8                 GHSA-hrfv-mqp8-q5rw
+      - CVE-2023-46136               Medium    fixed in 2.3.8                 GHSA-hrfv-mqp8-q5rw
+      - CVE-2023-46136               Medium    fixed in 2.3.8                 GHSA-hrfv-mqp8-q5rw
+      - CVE-2023-46136               Medium    fixed in 2.3.8                 GHSA-hrfv-mqp8-q5rw
+      - CVE-2023-46136               Medium    fixed in 2.3.8                 GHSA-hrfv-mqp8-q5rw
+      - CVE-2023-46136               Medium    fixed in 2.3.8                 GHSA-hrfv-mqp8-q5rw
+      - CVE-2024-49766               Medium    fixed in 3.0.6                 GHSA-f9vj-2wh5-fj8j
+      - CVE-2024-49766               Medium    fixed in 3.0.6                 GHSA-f9vj-2wh5-fj8j
+      - CVE-2024-49766               Medium    fixed in 3.0.6                 GHSA-f9vj-2wh5-fj8j
+      - CVE-2024-49766               Medium    fixed in 3.0.6                 GHSA-f9vj-2wh5-fj8j
+      - CVE-2024-49766               Medium    fixed in 3.0.6                 GHSA-f9vj-2wh5-fj8j
+      - CVE-2024-49766               Medium    fixed in 3.0.6                 GHSA-f9vj-2wh5-fj8j
+      - CVE-2024-49766               Medium    fixed in 3.0.6                 GHSA-f9vj-2wh5-fj8j
+      - CVE-2024-49766               Medium    fixed in 3.0.6                 GHSA-f9vj-2wh5-fj8j
+      - CVE-2026-27199               Medium    fixed in 3.1.6                 GHSA-29vq-49wr-vm6x
+      - CVE-2026-27199               Medium    fixed in 3.1.6                 GHSA-29vq-49wr-vm6x
+      - CVE-2026-27199               Medium    fixed in 3.1.6                 GHSA-29vq-49wr-vm6x
+      - CVE-2026-27199               Medium    fixed in 3.1.6                 GHSA-29vq-49wr-vm6x
+      - CVE-2026-27199               Medium    fixed in 3.1.6                 GHSA-29vq-49wr-vm6x
+      - CVE-2026-27199               Medium    fixed in 3.1.6                 GHSA-29vq-49wr-vm6x
+      - CVE-2026-27199               Medium    fixed in 3.1.6                 GHSA-29vq-49wr-vm6x
+      - CVE-2026-27199               Medium    fixed in 3.1.6                 GHSA-29vq-49wr-vm6x
+      - CVE-2025-66221               Medium    fixed in 3.1.4                 GHSA-hgf8-39gv-g3f2
+      - CVE-2025-66221               Medium    fixed in 3.1.4                 GHSA-hgf8-39gv-g3f2
+      - CVE-2025-66221               Medium    fixed in 3.1.4                 GHSA-hgf8-39gv-g3f2
+      - CVE-2025-66221               Medium    fixed in 3.1.4                 GHSA-hgf8-39gv-g3f2
+      - CVE-2025-66221               Medium    fixed in 3.1.4                 GHSA-hgf8-39gv-g3f2
+      - CVE-2025-66221               Medium    fixed in 3.1.4                 GHSA-hgf8-39gv-g3f2
+      - CVE-2025-66221               Medium    fixed in 3.1.4                 GHSA-hgf8-39gv-g3f2
+      - CVE-2025-66221               Medium    fixed in 3.1.4                 GHSA-hgf8-39gv-g3f2
+      - CVE-2026-21860               Medium    fixed in 3.1.5                 GHSA-87hc-h4r5-73f7
+      - CVE-2026-21860               Medium    fixed in 3.1.5                 GHSA-87hc-h4r5-73f7
+      - CVE-2026-21860               Medium    fixed in 3.1.5                 GHSA-87hc-h4r5-73f7
+      - CVE-2026-21860               Medium    fixed in 3.1.5                 GHSA-87hc-h4r5-73f7
+      - CVE-2026-21860               Medium    fixed in 3.1.5                 GHSA-87hc-h4r5-73f7
+      - CVE-2026-21860               Medium    fixed in 3.1.5                 GHSA-87hc-h4r5-73f7
+      - CVE-2026-21860               Medium    fixed in 3.1.5                 GHSA-87hc-h4r5-73f7
+      - CVE-2026-21860               Medium    fixed in 3.1.5                 GHSA-87hc-h4r5-73f7
+      - CVE-2026-102598              Medium    fixed in 3.1.9                 GHSA-g6x2-hccm-hh4m
+      - CVE-2026-102598              Medium    fixed in 3.1.9                 GHSA-g6x2-hccm-hh4m
+      - CVE-2026-102598              Medium    fixed in 3.1.9                 GHSA-g6x2-hccm-hh4m
+      - CVE-2026-102598              Medium    fixed in 3.1.9                 GHSA-g6x2-hccm-hh4m
+      - CVE-2026-102598              Medium    fixed in 3.1.9                 GHSA-g6x2-hccm-hh4m
+      - CVE-2026-102598              Medium    fixed in 3.1.9                 GHSA-g6x2-hccm-hh4m
+      - CVE-2026-102598              Medium    fixed in 3.1.9                 GHSA-g6x2-hccm-hh4m
+      - CVE-2026-102598              Medium    fixed in 3.1.9                 GHSA-g6x2-hccm-hh4m
+flask                              2.0.1               14    -    7    -    7  fix available  3.1.3
+      - CVE-2023-30861               High      fixed in 2.2.5                 GHSA-m2qf-hxjv-5gpq
+      - CVE-2023-30861               High      fixed in 2.2.5                 GHSA-m2qf-hxjv-5gpq
+      - CVE-2023-30861               High      fixed in 2.2.5                 GHSA-m2qf-hxjv-5gpq
+      - CVE-2023-30861               High      fixed in 2.2.5                 GHSA-m2qf-hxjv-5gpq
+      - CVE-2023-30861               High      fixed in 2.2.5                 GHSA-m2qf-hxjv-5gpq
+      - CVE-2023-30861               High      fixed in 2.2.5                 GHSA-m2qf-hxjv-5gpq
+      - CVE-2023-30861               High      fixed in 2.2.5                 GHSA-m2qf-hxjv-5gpq
+      - CVE-2026-27205               Low       fixed in 3.1.3                 GHSA-68rp-wp8r-4726
+      - CVE-2026-27205               Low       fixed in 3.1.3                 GHSA-68rp-wp8r-4726
+      - CVE-2026-27205               Low       fixed in 3.1.3                 GHSA-68rp-wp8r-4726
+      - CVE-2026-27205               Low       fixed in 3.1.3                 GHSA-68rp-wp8r-4726
+      - CVE-2026-27205               Low       fixed in 3.1.3                 GHSA-68rp-wp8r-4726
+      - CVE-2026-27205               Low       fixed in 3.1.3                 GHSA-68rp-wp8r-4726
+      - CVE-2026-27205               Low       fixed in 3.1.3                 GHSA-68rp-wp8r-4726
+urllib3                            1.26.9              10    -    7    3    -  fix available  2.8.0
+      - CVE-2026-21441               High      fixed in 2.6.3                 GHSA-38jv-5279-wg99
+      - CVE-2023-43804               High      fixed in 1.26.17               GHSA-v845-jxx5-vc9f
+      - CVE-2025-66471               High      fixed in 2.6.0                 GHSA-2xpw-w6gg-jr37
+      - CVE-2025-66418               High      fixed in 2.6.0                 GHSA-gm62-xv2j-4w53
+      - CVE-2026-97689               High      fixed in 2.8.0                 GHSA-vxq7-64xx-v4gw
+      - CVE-2026-44431               High      fixed in 2.7.0                 GHSA-qccp-gfcp-xxvc
+      - CVE-2026-97687               High      fixed in 2.8.0                 GHSA-8988-9cw3-xx77
+      - CVE-2024-37891               Medium    fixed in 1.26.19               GHSA-34jh-p97f-mpxf
+      - CVE-2023-45803               Medium    fixed in 1.26.18               GHSA-g4mx-q9vg-27p4
+      - CVE-2025-50181               Medium    fixed in 2.5.0                 GHSA-pq67-6m6q-mj2v
+werkzeug                           2.2.2               20    -    4   14    2  fix available  3.1.9
+      - CVE-2024-34069               High      fixed in 3.0.3                 GHSA-2g68-c3qc-8985
+      - CVE-2024-34069               High      fixed in 3.0.3                 GHSA-2g68-c3qc-8985
+      - CVE-2023-25577               High      fixed in 2.2.3                 GHSA-xg9f-g7g7-2323
+      - CVE-2023-25577               High      fixed in 2.2.3                 GHSA-xg9f-g7g7-2323
+      - CVE-2024-49767               Medium    fixed in 3.0.6                 GHSA-q34m-jh98-gwm2
+      - CVE-2024-49767               Medium    fixed in 3.0.6                 GHSA-q34m-jh98-gwm2
+      - CVE-2023-46136               Medium    fixed in 2.3.8                 GHSA-hrfv-mqp8-q5rw
+      - CVE-2023-46136               Medium    fixed in 2.3.8                 GHSA-hrfv-mqp8-q5rw
+      - CVE-2024-49766               Medium    fixed in 3.0.6                 GHSA-f9vj-2wh5-fj8j
+      - CVE-2024-49766               Medium    fixed in 3.0.6                 GHSA-f9vj-2wh5-fj8j
+      - CVE-2026-27199               Medium    fixed in 3.1.6                 GHSA-29vq-49wr-vm6x
+      - CVE-2026-27199               Medium    fixed in 3.1.6                 GHSA-29vq-49wr-vm6x
+      - CVE-2025-66221               Medium    fixed in 3.1.4                 GHSA-hgf8-39gv-g3f2
+      - CVE-2025-66221               Medium    fixed in 3.1.4                 GHSA-hgf8-39gv-g3f2
+      - CVE-2026-21860               Medium    fixed in 3.1.5                 GHSA-87hc-h4r5-73f7
+      - CVE-2026-21860               Medium    fixed in 3.1.5                 GHSA-87hc-h4r5-73f7
+      - CVE-2026-102598              Medium    fixed in 3.1.9                 GHSA-g6x2-hccm-hh4m
+      - CVE-2026-102598              Medium    fixed in 3.1.9                 GHSA-g6x2-hccm-hh4m
+      - CVE-2023-23934               Low       fixed in 2.2.3                 GHSA-px8h-6qxv-m22q
+      - CVE-2023-23934               Low       fixed in 2.2.3                 GHSA-px8h-6qxv-m22q
+cryptography                       39.0.1              11    -    4    3    4  fix available  48.0.1
+      - CVE-2023-50782               High      fixed in 42.0.0                GHSA-3ww4-gg4f-jr7f
+      - CVE-2024-26130               High      fixed in 42.0.4                GHSA-6vqw-3v5j-54x4
+      - CVE-2026-26007               High      fixed in 46.0.5                GHSA-r6ph-v2qm-q3c2
+      - GHSA-537c-gmf6-5ccf          High      fixed in 48.0.1                
+      - CVE-2024-0727                Medium    fixed in 42.0.2                GHSA-9v9h-cgj8-h64p
+      - CVE-2023-49083               Medium    fixed in 41.0.6                GHSA-jfhm-5ghh-2f97
+      - GHSA-h4gh-qq45-vh27          Medium    fixed in 43.0.1                
+      - CVE-2026-34073               Low       fixed in 46.0.6                GHSA-m959-cc7f-wv43
+      - GHSA-5cpq-8wj7-hf2v          Low       fixed in 41.0.0                
+      - GHSA-jm77-qphf-c4w8          Low       fixed in 41.0.3                
+      - GHSA-v8gr-m533-ghj9          Low       fixed in 41.0.4                
+sqlparse                           0.3.1                8    -    4    4    -  fix available  0.6.0
+      - CVE-2024-4340                High      fixed in 0.5.0                 GHSA-2m57-hf25-phgg
+      - CVE-2026-54284               High      fixed in 0.6.0                 GHSA-pwgv-4x5q-6m9f
+      - CVE-2026-59893               High      fixed in 0.6.0                 GHSA-prg7-hcfm-mfcr
+      - CVE-2026-71491               High      fixed in 0.6.0                 GHSA-f2ff-p2ww-7p4p
+      - CVE-2023-30608               Medium    fixed in 0.4.4                 GHSA-rrm6-wvj7-cwh2
+      - CVE-2026-84305               Medium    fixed in 0.6.0                 GHSA-cfqr-cjx5-5jcm
+      - CVE-2026-59894               Medium    fixed in 0.6.0                 GHSA-3496-9g83-7v6x
+      - GHSA-27jp-wm6q-gp25          Medium    fixed in 0.5.4                 
+werkzeug                           3.0.1               14    -    2   12    -  fix available  3.1.9
+      - CVE-2024-34069               High      fixed in 3.0.3                 GHSA-2g68-c3qc-8985
+      - CVE-2024-34069               High      fixed in 3.0.3                 GHSA-2g68-c3qc-8985
+      - CVE-2024-49767               Medium    fixed in 3.0.6                 GHSA-q34m-jh98-gwm2
+      - CVE-2024-49767               Medium    fixed in 3.0.6                 GHSA-q34m-jh98-gwm2
+      - CVE-2024-49766               Medium    fixed in 3.0.6                 GHSA-f9vj-2wh5-fj8j
+      - CVE-2024-49766               Medium    fixed in 3.0.6                 GHSA-f9vj-2wh5-fj8j
+      - CVE-2026-27199               Medium    fixed in 3.1.6                 GHSA-29vq-49wr-vm6x
+      - CVE-2026-27199               Medium    fixed in 3.1.6                 GHSA-29vq-49wr-vm6x
+      - CVE-2025-66221               Medium    fixed in 3.1.4                 GHSA-hgf8-39gv-g3f2
+      - CVE-2025-66221               Medium    fixed in 3.1.4                 GHSA-hgf8-39gv-g3f2
+      - CVE-2026-21860               Medium    fixed in 3.1.5                 GHSA-87hc-h4r5-73f7
+      - CVE-2026-21860               Medium    fixed in 3.1.5                 GHSA-87hc-h4r5-73f7
+      - CVE-2026-102598              Medium    fixed in 3.1.9                 GHSA-g6x2-hccm-hh4m
+      - CVE-2026-102598              Medium    fixed in 3.1.9                 GHSA-g6x2-hccm-hh4m
+werkzeug                           2.0.3               10    -    2    7    1  fix available  3.1.9
+      - CVE-2024-34069               High      fixed in 3.0.3                 GHSA-2g68-c3qc-8985
+      - CVE-2023-25577               High      fixed in 2.2.3                 GHSA-xg9f-g7g7-2323
+      - CVE-2024-49767               Medium    fixed in 3.0.6                 GHSA-q34m-jh98-gwm2
+      - CVE-2023-46136               Medium    fixed in 2.3.8                 GHSA-hrfv-mqp8-q5rw
+      - CVE-2024-49766               Medium    fixed in 3.0.6                 GHSA-f9vj-2wh5-fj8j
+      - CVE-2026-27199               Medium    fixed in 3.1.6                 GHSA-29vq-49wr-vm6x
+      - CVE-2025-66221               Medium    fixed in 3.1.4                 GHSA-hgf8-39gv-g3f2
+      - CVE-2026-21860               Medium    fixed in 3.1.5                 GHSA-87hc-h4r5-73f7
+      - CVE-2026-102598              Medium    fixed in 3.1.9                 GHSA-g6x2-hccm-hh4m
+      - CVE-2023-23934               Low       fixed in 2.2.3                 GHSA-px8h-6qxv-m22q
+werkzeug                           2.1.2               10    -    2    7    1  fix available  3.1.9
+      - CVE-2024-34069               High      fixed in 3.0.3                 GHSA-2g68-c3qc-8985
+      - CVE-2023-25577               High      fixed in 2.2.3                 GHSA-xg9f-g7g7-2323
+      - CVE-2024-49767               Medium    fixed in 3.0.6                 GHSA-q34m-jh98-gwm2
+      - CVE-2023-46136               Medium    fixed in 2.3.8                 GHSA-hrfv-mqp8-q5rw
+      - CVE-2024-49766               Medium    fixed in 3.0.6                 GHSA-f9vj-2wh5-fj8j
+      - CVE-2026-27199               Medium    fixed in 3.1.6                 GHSA-29vq-49wr-vm6x
+      - CVE-2025-66221               Medium    fixed in 3.1.4                 GHSA-hgf8-39gv-g3f2
+      - CVE-2026-21860               Medium    fixed in 3.1.5                 GHSA-87hc-h4r5-73f7
+      - CVE-2026-102598              Medium    fixed in 3.1.9                 GHSA-g6x2-hccm-hh4m
+      - CVE-2023-23934               Low       fixed in 2.2.3                 GHSA-px8h-6qxv-m22q
+gunicorn                           20.1.0               2    -    2    -    -  fix available  22.0.0
+      - CVE-2024-1135                High      fixed in 22.0.0                GHSA-w3h3-4rj7-4ph4
+      - CVE-2024-6827                High      fixed in 22.0.0                GHSA-hc5x-x2vx-497g
+black                              26.1.0               2    -    2    -    -  fix available  26.10.1
+      - CVE-2026-32274               High      fixed in 26.3.1                GHSA-3936-cmfr-pm3m
+      - CVE-2026-114134              High      fixed in 26.10.1               GHSA-cg8m-r9f2-5wm2
+flask                              2.0.3                2    -    1    -    1  fix available  3.1.3
+      - CVE-2023-30861               High      fixed in 2.2.5                 GHSA-m2qf-hxjv-5gpq
+      - CVE-2026-27205               Low       fixed in 3.1.3                 GHSA-68rp-wp8r-4726
+jinja2                             3.1.2               35    -    -   35    -  fix available  3.1.6
+      - CVE-2024-34064               Medium    fixed in 3.1.4                 GHSA-h75v-3vvj-5mfj
+      - CVE-2024-34064               Medium    fixed in 3.1.4                 GHSA-h75v-3vvj-5mfj
+      - CVE-2024-34064               Medium    fixed in 3.1.4                 GHSA-h75v-3vvj-5mfj
+      - CVE-2024-34064               Medium    fixed in 3.1.4                 GHSA-h75v-3vvj-5mfj
+      - CVE-2024-34064               Medium    fixed in 3.1.4                 GHSA-h75v-3vvj-5mfj
+      - CVE-2024-34064               Medium    fixed in 3.1.4                 GHSA-h75v-3vvj-5mfj
+      - CVE-2024-34064               Medium    fixed in 3.1.4                 GHSA-h75v-3vvj-5mfj
+      - CVE-2024-22195               Medium    fixed in 3.1.3                 GHSA-h5c8-rqwp-cp95
+      - CVE-2024-22195               Medium    fixed in 3.1.3                 GHSA-h5c8-rqwp-cp95
+      - CVE-2024-22195               Medium    fixed in 3.1.3                 GHSA-h5c8-rqwp-cp95
+      - CVE-2024-22195               Medium    fixed in 3.1.3                 GHSA-h5c8-rqwp-cp95
+      - CVE-2024-22195               Medium    fixed in 3.1.3                 GHSA-h5c8-rqwp-cp95
+      - CVE-2024-22195               Medium    fixed in 3.1.3                 GHSA-h5c8-rqwp-cp95
+      - CVE-2024-22195               Medium    fixed in 3.1.3                 GHSA-h5c8-rqwp-cp95
+      - CVE-2024-56326               Medium    fixed in 3.1.5                 GHSA-q2x7-8rv6-6q7h
+      - CVE-2024-56326               Medium    fixed in 3.1.5                 GHSA-q2x7-8rv6-6q7h
+      - CVE-2024-56326               Medium    fixed in 3.1.5                 GHSA-q2x7-8rv6-6q7h
+      - CVE-2024-56326               Medium    fixed in 3.1.5                 GHSA-q2x7-8rv6-6q7h
+      - CVE-2024-56326               Medium    fixed in 3.1.5                 GHSA-q2x7-8rv6-6q7h
+      - CVE-2024-56326               Medium    fixed in 3.1.5                 GHSA-q2x7-8rv6-6q7h
+      - CVE-2024-56326               Medium    fixed in 3.1.5                 GHSA-q2x7-8rv6-6q7h
+      - CVE-2025-27516               Medium    fixed in 3.1.6                 GHSA-cpwx-vrp4-4pq7
+      - CVE-2025-27516               Medium    fixed in 3.1.6                 GHSA-cpwx-vrp4-4pq7
+      - CVE-2025-27516               Medium    fixed in 3.1.6                 GHSA-cpwx-vrp4-4pq7
+      - CVE-2025-27516               Medium    fixed in 3.1.6                 GHSA-cpwx-vrp4-4pq7
+      - CVE-2025-27516               Medium    fixed in 3.1.6                 GHSA-cpwx-vrp4-4pq7
+      - CVE-2025-27516               Medium    fixed in 3.1.6                 GHSA-cpwx-vrp4-4pq7
+      - CVE-2025-27516               Medium    fixed in 3.1.6                 GHSA-cpwx-vrp4-4pq7
+      - CVE-2024-56201               Medium    fixed in 3.1.5                 GHSA-gmj6-6f8f-6699
+      - CVE-2024-56201               Medium    fixed in 3.1.5                 GHSA-gmj6-6f8f-6699
+      - CVE-2024-56201               Medium    fixed in 3.1.5                 GHSA-gmj6-6f8f-6699
+      - CVE-2024-56201               Medium    fixed in 3.1.5                 GHSA-gmj6-6f8f-6699
+      - CVE-2024-56201               Medium    fixed in 3.1.5                 GHSA-gmj6-6f8f-6699
+      - CVE-2024-56201               Medium    fixed in 3.1.5                 GHSA-gmj6-6f8f-6699
+      - CVE-2024-56201               Medium    fixed in 3.1.5                 GHSA-gmj6-6f8f-6699
+jinja2                             3.0.1               30    -    -   30    -  fix available  3.1.6
+      - CVE-2024-34064               Medium    fixed in 3.1.4                 GHSA-h75v-3vvj-5mfj
+      - CVE-2024-34064               Medium    fixed in 3.1.4                 GHSA-h75v-3vvj-5mfj
+      - CVE-2024-34064               Medium    fixed in 3.1.4                 GHSA-h75v-3vvj-5mfj
+      - CVE-2024-34064               Medium    fixed in 3.1.4                 GHSA-h75v-3vvj-5mfj
+      - CVE-2024-34064               Medium    fixed in 3.1.4                 GHSA-h75v-3vvj-5mfj
+      - CVE-2024-34064               Medium    fixed in 3.1.4                 GHSA-h75v-3vvj-5mfj
+      - CVE-2024-22195               Medium    fixed in 3.1.3                 GHSA-h5c8-rqwp-cp95
+      - CVE-2024-22195               Medium    fixed in 3.1.3                 GHSA-h5c8-rqwp-cp95
+      - CVE-2024-22195               Medium    fixed in 3.1.3                 GHSA-h5c8-rqwp-cp95
+      - CVE-2024-22195               Medium    fixed in 3.1.3                 GHSA-h5c8-rqwp-cp95
+      - CVE-2024-22195               Medium    fixed in 3.1.3                 GHSA-h5c8-rqwp-cp95
+      - CVE-2024-22195               Medium    fixed in 3.1.3                 GHSA-h5c8-rqwp-cp95
+      - CVE-2024-56326               Medium    fixed in 3.1.5                 GHSA-q2x7-8rv6-6q7h
+      - CVE-2024-56326               Medium    fixed in 3.1.5                 GHSA-q2x7-8rv6-6q7h
+      - CVE-2024-56326               Medium    fixed in 3.1.5                 GHSA-q2x7-8rv6-6q7h
+      - CVE-2024-56326               Medium    fixed in 3.1.5                 GHSA-q2x7-8rv6-6q7h
+      - CVE-2024-56326               Medium    fixed in 3.1.5                 GHSA-q2x7-8rv6-6q7h
+      - CVE-2024-56326               Medium    fixed in 3.1.5                 GHSA-q2x7-8rv6-6q7h
+      - CVE-2025-27516               Medium    fixed in 3.1.6                 GHSA-cpwx-vrp4-4pq7
+      - CVE-2025-27516               Medium    fixed in 3.1.6                 GHSA-cpwx-vrp4-4pq7
+      - CVE-2025-27516               Medium    fixed in 3.1.6                 GHSA-cpwx-vrp4-4pq7
+      - CVE-2025-27516               Medium    fixed in 3.1.6                 GHSA-cpwx-vrp4-4pq7
+      - CVE-2025-27516               Medium    fixed in 3.1.6                 GHSA-cpwx-vrp4-4pq7
+      - CVE-2025-27516               Medium    fixed in 3.1.6                 GHSA-cpwx-vrp4-4pq7
+      - CVE-2024-56201               Medium    fixed in 3.1.5                 GHSA-gmj6-6f8f-6699
+      - CVE-2024-56201               Medium    fixed in 3.1.5                 GHSA-gmj6-6f8f-6699
+      - CVE-2024-56201               Medium    fixed in 3.1.5                 GHSA-gmj6-6f8f-6699
+      - CVE-2024-56201               Medium    fixed in 3.1.5                 GHSA-gmj6-6f8f-6699
+      - CVE-2024-56201               Medium    fixed in 3.1.5                 GHSA-gmj6-6f8f-6699
+      - CVE-2024-56201               Medium    fixed in 3.1.5                 GHSA-gmj6-6f8f-6699
+flask                              2.3.3                8    -    -    -    8  fix available  3.1.3
+      - CVE-2026-27205               Low       fixed in 3.1.3                 GHSA-68rp-wp8r-4726
+      - CVE-2026-27205               Low       fixed in 3.1.3                 GHSA-68rp-wp8r-4726
+      - CVE-2026-27205               Low       fixed in 3.1.3                 GHSA-68rp-wp8r-4726
+      - CVE-2026-27205               Low       fixed in 3.1.3                 GHSA-68rp-wp8r-4726
+      - CVE-2026-27205               Low       fixed in 3.1.3                 GHSA-68rp-wp8r-4726
+      - CVE-2026-27205               Low       fixed in 3.1.3                 GHSA-68rp-wp8r-4726
+      - CVE-2026-27205               Low       fixed in 3.1.3                 GHSA-68rp-wp8r-4726
+      - CVE-2026-27205               Low       fixed in 3.1.3                 GHSA-68rp-wp8r-4726
+requests                           2.28.1               4    -    -    4    -  fix available  2.33.0
+      - CVE-2023-32681               Medium    fixed in 2.31.0                GHSA-j8r2-6x86-q33q
+      - CVE-2024-47081               Medium    fixed in 2.32.4                GHSA-9hjg-9r4m-mvj7
+      - CVE-2024-35195               Medium    fixed in 2.32.0                GHSA-9wx4-h78v-vm56
+      - CVE-2026-25645               Medium    fixed in 2.33.0                GHSA-gc5v-m9x4-r6x2
+requests                           2.28.2               4    -    -    4    -  fix available  2.33.0
+      - CVE-2023-32681               Medium    fixed in 2.31.0                GHSA-j8r2-6x86-q33q
+      - CVE-2024-47081               Medium    fixed in 2.32.4                GHSA-9hjg-9r4m-mvj7
+      - CVE-2024-35195               Medium    fixed in 2.32.0                GHSA-9wx4-h78v-vm56
+      - CVE-2026-25645               Medium    fixed in 2.33.0                GHSA-gc5v-m9x4-r6x2
+django-allauth                     0.52.0               3    -    -    3    -  fix available  65.14.1
+      - CVE-2026-27982               Medium    fixed in 65.14.1               GHSA-2jpr-83rg-v67j
+      - CVE-2025-65430               Medium    fixed in 65.13.0               GHSA-qhmc-3mvr-f2j4
+      - CVE-2025-65431               Medium    fixed in 65.13.0               GHSA-8m3c-c723-h4p4
+flask                              2.2.5                3    -    -    -    3  fix available  3.1.3
+      - CVE-2026-27205               Low       fixed in 3.1.3                 GHSA-68rp-wp8r-4726
+      - CVE-2026-27205               Low       fixed in 3.1.3                 GHSA-68rp-wp8r-4726
+      - CVE-2026-27205               Low       fixed in 3.1.3                 GHSA-68rp-wp8r-4726
+idna                               3.4                  2    -    -    2    -  fix available  3.15
+      - CVE-2024-3651                Medium    fixed in 3.7                   GHSA-jjg7-2v4v-x38h
+      - CVE-2026-45409               Medium    fixed in 3.15                  GHSA-65pc-fj4g-8rjx
+oauthlib                           3.2.2                2    -    -    2    -  fix available  4.0.0
+      - CVE-2026-49265               Medium    fixed in 4.0.0                 GHSA-xpv3-w29h-x7cv
+      - CVE-2026-49264               Medium    fixed in 4.0.0                 GHSA-hj66-6f7g-4r5v
+zipp                               3.8.0                1    -    -    1    -  fix available  3.19.1
+      - CVE-2024-5569                Medium    fixed in 3.19.1                GHSA-jfmj-5v4g-7637
+flask                              3.0.0                1    -    -    -    1  fix available  3.1.3
+      - CVE-2026-27205               Low       fixed in 3.1.3                 GHSA-68rp-wp8r-4726
+flask                              3.0.2                1    -    -    -    1  fix available  3.1.3
+      - CVE-2026-27205               Low       fixed in 3.1.3                 GHSA-68rp-wp8r-4726
+python-dotenv                      0.21.1               1    -    -    1    -  fix available  1.2.2
+      - CVE-2026-28684               Medium    fixed in 1.2.2                 GHSA-mf9w-mj56-hr94
+  => 34 fix available, 0 partial fix, 0 no fix
+
+--- dvpwa (4 vulnerable packages) ---
+package                            version          vulns crit high  med  low  fix status     upgrade to
+pyyaml                             3.13                 2    2    -    -    -  fix available  5.4
+      - CVE-2020-14343               Critical  fixed in 5.4                   GHSA-8q59-q68h-6hv4
+      - CVE-2017-18342               Critical  fixed in 5.1                   GHSA-rprw-h62v-c2w7
+aiohttp                            3.5.3               53    -    7   27   19  fix available  3.14.4
+      - CVE-2024-23334               High      fixed in 3.9.2                 GHSA-5h86-8mv2-jq9f
+      - CVE-2024-30251               High      fixed in 3.9.4                 GHSA-5m98-qgg9-wh84
+      - CVE-2025-69223               High      fixed in 3.13.3                GHSA-6mq8-rvhq-8wgg
+      - CVE-2026-69244               High      fixed in 3.14.3                GHSA-cq5v-8q36-5273
+      - CVE-2026-111064              High      fixed in 3.14.4                GHSA-5wr8-gcqf-gqf3
+      - CVE-2026-111066              High      fixed in 3.14.4                GHSA-9xw5-w5jj-pvcg
+      - GHSA-2g87-pp6c-29x5          High      fixed in 3.14.4                
+      - CVE-2023-37276               Medium    fixed in 3.8.5                 GHSA-45c4-8wx5-qw6w
+      - CVE-2024-23829               Medium    fixed in 3.9.2                 GHSA-8qpw-xqxj-h4r2
+      - CVE-2023-49081               Medium    fixed in 3.9.0                 GHSA-q3qx-c6g2-7pw2
+      - CVE-2023-49082               Medium    fixed in 3.9.0                 GHSA-qvrw-v9rv-5rjx
+      - CVE-2023-47627               Medium    fixed in 3.8.6                 GHSA-gfw2-4jvh-wgfg
+      - CVE-2024-27306               Medium    fixed in 3.9.4                 GHSA-7gpw-8wmc-pm8g
+      - CVE-2026-34516               Medium    fixed in 3.13.4                GHSA-m5qp-6w8w-w647
+      - CVE-2026-54277               Medium    fixed in 3.14.1                GHSA-63hw-fmq6-xxg2
+      - CVE-2024-52304               Medium    fixed in 3.10.11               GHSA-8495-4g3g-x7pr
+      - CVE-2026-54274               Medium    fixed in 3.14.1                GHSA-xcgm-r5h9-7989
+      - CVE-2026-59881               Medium    fixed in 3.14.2                GHSA-mq44-7p77-q5h7
+      - CVE-2026-34515               Medium    fixed in 3.13.4                GHSA-p998-jp59-783m
+      - CVE-2026-54273               Medium    fixed in 3.14.1                GHSA-4fvr-rgm6-gqmc
+      - CVE-2026-54278               Medium    fixed in 3.14.1                GHSA-g3cq-j2xw-wf74
+      - CVE-2026-34993               Medium    fixed in 3.14.0                GHSA-jg22-mg44-37j8
+      - CVE-2026-22815               Medium    fixed in 3.13.4                GHSA-w2fm-2cpv-w7v5
+      - CVE-2026-69243               Medium    fixed in 3.14.2                GHSA-mfx4-hv73-q22v
+      - CVE-2025-69228               Medium    fixed in 3.13.3                GHSA-6jhg-hg63-jvvf
+      - CVE-2025-69229               Medium    fixed in 3.13.3                GHSA-g84x-mcqj-x9qq
+      - CVE-2025-69227               Medium    fixed in 3.13.3                GHSA-jj3x-wxrx-4x23
+      - CVE-2026-34525               Medium    fixed in 3.13.4                GHSA-c427-h43c-vf67
+      - CVE-2026-111065              Medium    fixed in 3.14.4                GHSA-6cjc-53gc-5rqm
+      - CVE-2026-111748              Medium    fixed in 3.14.4                GHSA-f9xw-jh8m-3mwq
+      - CVE-2026-54276               Medium    fixed in 3.14.1                GHSA-hpj7-wq8m-9hgp
+      - CVE-2026-111750              Medium    fixed in 3.14.4                GHSA-pqxq-w44r-73xw
+      - CVE-2026-47265               Medium    fixed in 3.14.0                GHSA-hg6j-4rv6-33pg
+      - GHSA-pjjw-qhg8-p2p9          Medium    fixed in 3.8.6                 
+      - CVE-2021-21330               Low       fixed in 3.7.4                 GHSA-v6wp-4m6f-gcjg
+      - CVE-2026-34520               Low       fixed in 3.13.4                GHSA-63hf-3vf5-4wqf
+      - CVE-2023-47641               Low       fixed in 3.8.0                 GHSA-xx9p-xxvh-7g8j
+      - CVE-2026-34513               Low       fixed in 3.13.4                GHSA-hcc4-c3v8-rx92
+      - CVE-2026-50269               Low       fixed in 3.14.0                GHSA-m6qw-4cw2-hm4m
+      - CVE-2026-34517               Low       fixed in 3.13.4                GHSA-3wq7-rqq7-wx6j
+      - CVE-2026-34518               Low       fixed in 3.13.4                GHSA-966j-vmvw-g2g9
+      - CVE-2026-54275               Low       fixed in 3.14.1                GHSA-4m7w-qmgq-4wj5
+      - CVE-2026-34514               Low       fixed in 3.13.4                GHSA-2vrm-gr82-f7m5
+      - CVE-2026-34519               Low       fixed in 3.13.4                GHSA-mwh4-6h8g-pg8w
+      - CVE-2026-54280               Low       fixed in 3.14.1                GHSA-9x8q-7h8h-wcw9
+      - CVE-2026-54279               Low       fixed in 3.14.1                GHSA-2fqr-mr3j-6wp8
+      - CVE-2025-69226               Low       fixed in 3.13.3                GHSA-54jq-c3m8-4m76
+      - CVE-2025-69230               Low       fixed in 3.13.3                GHSA-fh55-r93g-j68g
+      - CVE-2025-53643               Low       fixed in 3.12.14               GHSA-9548-qrrj-x5pj
+      - CVE-2025-69225               Low       fixed in 3.13.3                GHSA-mqqc-3gqh-h2x8
+      - CVE-2026-111749              Low       fixed in 3.14.4                GHSA-gx76-c99x-2c96
+      - CVE-2025-69224               Low       fixed in 3.13.3                GHSA-69f9-5gxw-wvc2
+      - CVE-2026-111063              Low       fixed in 3.14.4                GHSA-494j-54xm-rwp3
+jinja2                             2.10                 6    -    1    5    -  fix available  3.1.6
+      - CVE-2019-10906               High      fixed in 2.10.1                GHSA-462w-v97r-4m45
+      - CVE-2020-28493               Medium    fixed in 2.11.3                GHSA-g3rq-g295-4j3m
+      - CVE-2024-34064               Medium    fixed in 3.1.4                 GHSA-h75v-3vvj-5mfj
+      - CVE-2024-22195               Medium    fixed in 3.1.3                 GHSA-h5c8-rqwp-cp95
+      - CVE-2024-56326               Medium    fixed in 3.1.5                 GHSA-q2x7-8rv6-6q7h
+      - CVE-2025-27516               Medium    fixed in 3.1.6                 GHSA-cpwx-vrp4-4pq7
+idna                               2.8                  2    -    -    2    -  fix available  3.15
+      - CVE-2024-3651                Medium    fixed in 3.7                   GHSA-jjg7-2v4v-x38h
+      - CVE-2026-45409               Medium    fixed in 3.15                  GHSA-65pc-fj4g-8rjx
+  => 4 fix available, 0 partial fix, 0 no fix
+
+--- dvga (13 vulnerable packages) ---
+package                            version          vulns crit high  med  low  fix status     upgrade to
+pyjwt                              2.0.1               12    1    5    5    1  fix available  2.15.0
+      - CVE-2026-102268              Critical  fixed in 2.14.0                GHSA-ffc3-869f-jxw9
+      - CVE-2022-29217               High      fixed in 2.4.0                 GHSA-ffqj-6fqr-9h24
+      - CVE-2026-48526               High      fixed in 2.13.0                GHSA-xgmm-8j9v-c9wx
+      - CVE-2026-32597               High      fixed in 2.12.0                GHSA-752w-5fwx-jx9f
+      - CVE-2026-102267              High      fixed in 2.14.0                GHSA-9v7f-9g4p-ffgj
+      - GHSA-pxh4-856f-4h89          High      fixed in 2.14.0                
+      - CVE-2026-101917              Medium    fixed in 2.14.0                GHSA-2gx3-rcp4-g85q
+      - CVE-2026-101918              Medium    fixed in 2.15.0                GHSA-42vr-xj54-vc7v
+      - CVE-2026-48522               Medium    fixed in 2.13.0                GHSA-993g-76c3-p5m4
+      - CVE-2026-102270              Medium    fixed in 2.14.0                GHSA-jwrc-g2q2-pq5p
+      - CVE-2026-102269              Medium    fixed in 2.14.0                GHSA-hxm8-2xgr-2p9m
+      - CVE-2026-48524               Low       fixed in 2.13.0                GHSA-fhv5-28vv-h8m8
+certifi                            2022.12.7            3    1    1    -    1  fix available  2026.10.19
+      - GHSA-6q48-6c7w-9gw2          Critical  fixed in 2026.10.19            
+      - CVE-2023-37920               High      fixed in 2023.7.22             GHSA-xqr8-7jwr-rhp7
+      - CVE-2024-39689               Low       fixed in 2024.7.4              GHSA-248v-346w-9cwc
+gevent                             22.10.2              1    1    -    -    -  fix available  23.9.0
+      - CVE-2023-41419               Critical  fixed in 23.9.0                GHSA-x7m3-jprg-wc5g
+h11                                0.14.0               1    1    -    -    -  fix available  0.16.0
+      - CVE-2025-43859               Critical  fixed in 0.16.0                GHSA-vqfr-h8mv-ghfj
+urllib3                            1.26.13             10    -    7    3    -  fix available  2.8.0
+      - CVE-2026-21441               High      fixed in 2.6.3                 GHSA-38jv-5279-wg99
+      - CVE-2023-43804               High      fixed in 1.26.17               GHSA-v845-jxx5-vc9f
+      - CVE-2025-66471               High      fixed in 2.6.0                 GHSA-2xpw-w6gg-jr37
+      - CVE-2025-66418               High      fixed in 2.6.0                 GHSA-gm62-xv2j-4w53
+      - CVE-2026-97689               High      fixed in 2.8.0                 GHSA-vxq7-64xx-v4gw
+      - CVE-2026-44431               High      fixed in 2.7.0                 GHSA-qccp-gfcp-xxvc
+      - CVE-2026-97687               High      fixed in 2.8.0                 GHSA-8988-9cw3-xx77
+      - CVE-2024-37891               Medium    fixed in 1.26.19               GHSA-34jh-p97f-mpxf
+      - CVE-2023-45803               Medium    fixed in 1.26.18               GHSA-g4mx-q9vg-27p4
+      - CVE-2025-50181               Medium    fixed in 2.5.0                 GHSA-pq67-6m6q-mj2v
+werkzeug                           2.2.2               10    -    2    7    1  fix available  3.1.9
+      - CVE-2024-34069               High      fixed in 3.0.3                 GHSA-2g68-c3qc-8985
+      - CVE-2023-25577               High      fixed in 2.2.3                 GHSA-xg9f-g7g7-2323
+      - CVE-2024-49767               Medium    fixed in 3.0.6                 GHSA-q34m-jh98-gwm2
+      - CVE-2023-46136               Medium    fixed in 2.3.8                 GHSA-hrfv-mqp8-q5rw
+      - CVE-2024-49766               Medium    fixed in 3.0.6                 GHSA-f9vj-2wh5-fj8j
+      - CVE-2026-27199               Medium    fixed in 3.1.6                 GHSA-29vq-49wr-vm6x
+      - CVE-2025-66221               Medium    fixed in 3.1.4                 GHSA-hgf8-39gv-g3f2
+      - CVE-2026-21860               Medium    fixed in 3.1.5                 GHSA-87hc-h4r5-73f7
+      - CVE-2026-102598              Medium    fixed in 3.1.9                 GHSA-g6x2-hccm-hh4m
+      - CVE-2023-23934               Low       fixed in 2.2.3                 GHSA-px8h-6qxv-m22q
+python-engineio                    4.3.4                2    -    2    -    -  fix available  4.13.2
+      - CVE-2026-48802               High      fixed in 4.13.2                GHSA-cgwc-pv48-fhj5
+      - CVE-2026-48809               High      fixed in 4.13.2                GHSA-m9gh-vj53-gvh9
+flask                              2.2.2                2    -    1    -    1  fix available  3.1.3
+      - CVE-2023-30861               High      fixed in 2.2.5                 GHSA-m2qf-hxjv-5gpq
+      - CVE-2026-27205               Low       fixed in 3.1.3                 GHSA-68rp-wp8r-4726
+python-socketio                    5.7.2                2    -    1    1    -  fix available  5.16.2
+      - CVE-2026-48804               High      fixed in 5.16.2                GHSA-5w7q-77mv-v69f
+      - CVE-2025-61765               Medium    fixed in 5.14.0                GHSA-g8c6-8fjj-2r4m
+jinja2                             3.1.2                5    -    -    5    -  fix available  3.1.6
+      - CVE-2024-34064               Medium    fixed in 3.1.4                 GHSA-h75v-3vvj-5mfj
+      - CVE-2024-22195               Medium    fixed in 3.1.3                 GHSA-h5c8-rqwp-cp95
+      - CVE-2024-56326               Medium    fixed in 3.1.5                 GHSA-q2x7-8rv6-6q7h
+      - CVE-2025-27516               Medium    fixed in 3.1.6                 GHSA-cpwx-vrp4-4pq7
+      - CVE-2024-56201               Medium    fixed in 3.1.5                 GHSA-gmj6-6f8f-6699
+requests                           2.28.1               4    -    -    4    -  fix available  2.33.0
+      - CVE-2023-32681               Medium    fixed in 2.31.0                GHSA-j8r2-6x86-q33q
+      - CVE-2024-47081               Medium    fixed in 2.32.4                GHSA-9hjg-9r4m-mvj7
+      - CVE-2024-35195               Medium    fixed in 2.32.0                GHSA-9wx4-h78v-vm56
+      - CVE-2026-25645               Medium    fixed in 2.33.0                GHSA-gc5v-m9x4-r6x2
+idna                               3.4                  2    -    -    2    -  fix available  3.15
+      - CVE-2024-3651                Medium    fixed in 3.7                   GHSA-jjg7-2v4v-x38h
+      - CVE-2026-45409               Medium    fixed in 3.15                  GHSA-65pc-fj4g-8rjx
+pytest                             7.2.0                1    -    -    1    -  fix available  9.0.3
+      - CVE-2025-71176               Medium    fixed in 9.0.3                 GHSA-6w46-j5rx-g56g
+  => 13 fix available, 0 partial fix, 0 no fix
+
+--- juice-shop (23 vulnerable packages) ---
+package                            version          vulns crit high  med  low  fix status     upgrade to
+decompress                         4.2.1                4    2    -    2    -  no fix         -
+      - CVE-2026-101894              Critical  no fix (not-fixed)             GHSA-hrh2-vp3x-79xf
+      - CVE-2026-53486               Critical  no fix (not-fixed)             GHSA-mp2f-45pm-3cg9
+      - CVE-2026-10732               Medium    no fix (not-fixed)             GHSA-h39j-r5qq-r9mm
+      - CVE-2026-39243               Medium    no fix (not-fixed)             GHSA-jwp9-9v96-94mx
+crypto-js                          3.3.0                2    2    -    -    -  fix available  4.2.0
+      - CVE-2023-46233               Critical  fixed in 4.2.0                 GHSA-xwcq-pm8m-c4vf
+      - CVE-2026-71851               Critical  fixed in 4.0.0                 GHSA-rg76-677x-56q9
+tar                                6.2.1               12    1    8    3    -  fix available  7.5.21
+      - CVE-2026-59873               Critical  fixed in 7.5.19                GHSA-23hp-3jrh-7fpw
+      - CVE-2026-24842               High      fixed in 7.5.7                 GHSA-34x7-hfp2-rc4v
+      - CVE-2026-73566               High      fixed in 7.5.21                GHSA-r292-9mhp-454m
+      - CVE-2026-59874               High      fixed in 7.5.18                GHSA-8x88-c5mf-7j5w
+      - CVE-2026-29786               High      fixed in 7.5.10                GHSA-qffp-2rhf-9h96
+      - CVE-2026-23745               High      fixed in 7.5.3                 GHSA-8qq5-rm4j-mr97
+      - CVE-2026-23950               High      fixed in 7.5.4                 GHSA-r6q2-hw4h-h46w
+      - CVE-2026-26960               High      fixed in 7.5.8                 GHSA-83g3-92jg-28cx
+      - CVE-2026-31802               High      fixed in 7.5.11                GHSA-9ppj-qmqm-q256
+      - CVE-2026-59871               Medium    fixed in 7.5.18                GHSA-w8wr-v893-vjvp
+      - CVE-2026-59875               Medium    fixed in 7.5.17                GHSA-gvwx-54wh-qm9j
+      - CVE-2026-53655               Medium    fixed in 7.5.16                GHSA-vmf3-w455-68vh
+lodash                             2.4.2                5    1    2    2    -  fix available  4.18.0
+      - CVE-2019-10744               Critical  fixed in 4.17.12               GHSA-jf85-cpcp-j695
+      - CVE-2021-23337               High      fixed in 4.17.21               GHSA-35jh-r3h4-6jhm
+      - CVE-2018-16487               High      fixed in 4.17.11               GHSA-4xc9-xhrj-v574
+      - CVE-2018-3721                Medium    fixed in 4.17.5                GHSA-fvqr-27wr-82fm
+      - CVE-2026-2950                Medium    fixed in 4.18.0                GHSA-f23m-r3pf-42rh
+jsonwebtoken                       0.1.0                4    1    1    2    -  fix available  9.0.0
+      - CVE-2015-9235                Critical  fixed in 4.2.2                 GHSA-c7hr-j4mj-j2w6
+      - CVE-2022-23539               High      fixed in 9.0.0                 GHSA-8cf7-32gw-wr33
+      - CVE-2022-23541               Medium    fixed in 9.0.0                 GHSA-hjrf-2m68-5959
+      - CVE-2022-23540               Medium    fixed in 9.0.0                 GHSA-qwph-4952-7xr6
+jsonwebtoken                       0.4.0                4    1    1    2    -  fix available  9.0.0
+      - CVE-2015-9235                Critical  fixed in 4.2.2                 GHSA-c7hr-j4mj-j2w6
+      - CVE-2022-23539               High      fixed in 9.0.0                 GHSA-8cf7-32gw-wr33
+      - CVE-2022-23541               Medium    fixed in 9.0.0                 GHSA-hjrf-2m68-5959
+      - CVE-2022-23540               Medium    fixed in 9.0.0                 GHSA-qwph-4952-7xr6
+marsdb                             0.6.11               1    1    -    -    -  no fix         -
+      - GHSA-5mrr-rgp6-x4gr          Critical  no fix (not-fixed)             
+minimatch                          3.0.5                3    -    3    -    -  fix available  3.1.4
+      - CVE-2026-26996               High      fixed in 3.1.3                 GHSA-3ppc-4f35-3m26
+      - CVE-2026-27903               High      fixed in 3.1.3                 GHSA-7r86-cg39-jmmj
+      - CVE-2026-27904               High      fixed in 3.1.4                 GHSA-23c5-xmqv-rm74
+moment                             2.0.0                3    -    2    1    -  fix available  2.29.2
+      - CVE-2022-24785               High      fixed in 2.29.2                GHSA-8hfj-j24r-96c4
+      - CVE-2017-18214               High      fixed in 2.19.3                GHSA-446m-mv8f-q348
+      - CVE-2016-4055                Medium    fixed in 2.11.2                GHSA-87vv-r9j6-g5qv
+http-cache-semantics               3.8.1                2    -    2    -    -  partial fix    4.1.1
+      - CVE-2022-25881               High      fixed in 4.1.1                 GHSA-rc47-6667-2j5j
+      - CVE-2026-93748               High      no fix (not-fixed)             GHSA-ch52-4w7c-c8xp
+jws                                0.2.6                2    -    2    -    -  fix available  3.2.3
+      - CVE-2025-65945               High      fixed in 3.2.3                 GHSA-869p-cjfg-cm3x
+      - CVE-2016-1000223             High      fixed in 3.0.0                 GHSA-gjcw-v447-2w7q
+sanitize-html                      1.4.2               10    -    1    9    -  fix available  2.18.0
+      - CVE-2022-25887               High      fixed in 2.7.1                 GHSA-cgfm-xwp7-2cvr
+      - CVE-2021-26539               Medium    fixed in 2.3.1                 GHSA-rjqq-98f6-6j3r
+      - CVE-2021-26540               Medium    fixed in 2.3.2                 GHSA-mjxr-4v3x-q3m4
+      - CVE-2017-16016               Medium    fixed in 1.11.4                GHSA-xc6g-ggrc-qq4r
+      - CVE-2024-21501               Medium    fixed in 2.12.1                GHSA-rm97-x556-q36h
+      - CVE-2016-1000237             Medium    fixed in 1.4.3                 GHSA-3j7m-hmh3-9jmp
+      - CVE-2026-63670               Medium    fixed in 2.17.6                GHSA-jxwj-j7wr-gfrw
+      - CVE-2026-113654              Medium    fixed in 2.18.0                GHSA-x3q4-9hxx-gx8m
+      - CVE-2019-25225               Medium    fixed in 2.0.0-beta            GHSA-qhxp-v273-g94h
+      - CVE-2026-113661              Medium    fixed in 2.18.0                GHSA-cv27-6wvh-8x7j
+express-jwt                        0.1.3                1    -    1    -    -  fix available  6.0.0
+      - CVE-2020-15084               High      fixed in 6.0.0                 GHSA-6g6m-m6h5-w9gf
+basic-ftp                          5.3.1                1    -    1    -    -  fix available  6.2.1
+      - CVE-2026-102990              High      fixed in 6.2.1                 GHSA-c475-qrg2-pj4r
+got                                8.3.2                1    -    -    1    -  fix available  11.8.5
+      - CVE-2022-33987               Medium    fixed in 11.8.5                GHSA-pfrx-2q88-qq97
+notevil                            1.3.3                1    -    -    1    -  no fix         -
+      - CVE-2021-23771               Medium    no fix (not-fixed)             GHSA-8g4m-cjm2-96wq
+decode-uri-component               0.2.2                1    -    -    1    -  fix available  0.5.0
+      - CVE-2026-45822               Medium    fixed in 0.5.0                 GHSA-vcc3-ghjq-m6fr
+uuid                               8.3.2                1    -    -    1    -  fix available  11.1.1
+      - CVE-2026-41907               Medium    fixed in 11.1.1                GHSA-w5hq-g745-h8pq
+file-type                          16.5.4               1    -    -    1    -  fix available  21.3.1
+      - CVE-2026-31808               Medium    fixed in 21.3.1                GHSA-5v7r-6r5c-r473
+@tootallnate/once                  1.1.2                1    -    -    -    1  fix available  2.0.1
+      - CVE-2026-3449                Low       fixed in 2.0.1                 GHSA-vpq2-c234-7xj6
+base64url                          0.0.6                1    -    -    1    -  fix available  3.0.0
+      - GHSA-rvg8-pwq2-xj7q          Medium    fixed in 3.0.0                 
+sprintf-js                         1.0.3                1    -    -    1    -  no fix         -
+      - CVE-2026-97058               Medium    no fix (not-fixed)             GHSA-hp3w-g68c-fv3c
+sprintf-js                         1.1.3                1    -    -    1    -  no fix         -
+      - CVE-2026-97058               Medium    no fix (not-fixed)             GHSA-hp3w-g68c-fv3c
+  => 17 fix available, 1 partial fix, 5 no fix
+
+Saved output/packages.csv (one row per vulnerable package + version)
