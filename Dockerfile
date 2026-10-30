@@ -13,4 +13,7 @@ RUN apt-get update && apt-get install -y --no-install-recommends git curl ca-cer
  && rm -rf /var/lib/apt/lists/*
 COPY --from=build /src/target/sbom-pipeline.jar /app/sbom-pipeline.jar
 WORKDIR /work
+# Freeze the Grype database: never auto-update, and allow the pinned (older) DB
+ENV GRYPE_DB_AUTO_UPDATE=false \
+    GRYPE_DB_VALIDATE_AGE=false
 ENTRYPOINT ["java", "-jar", "/app/sbom-pipeline.jar"]
