@@ -56,6 +56,9 @@ public class ReportWriter {
 
         writeFindingsCsv(findings);
         System.out.println("\nSaved output/summary.csv and output/findings.csv");
+
+        // Group the findings by package + version (fix status and upgrade advice)
+        PackageReport.write(testset, findings);
     }
 
     // Show "-" instead of 0 in the terminal table (the CSV keeps real numbers)
