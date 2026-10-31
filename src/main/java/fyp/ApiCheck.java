@@ -28,7 +28,7 @@ public class ApiCheck {
         for (int i = 0; i < sampleSize && i < sample.size(); i++) {
             picked.add(sample.get(i * sample.size() / Math.min(sampleSize, sample.size())));
         }
-        String url = "https://api.first.org/data/v1/epss?date=" + cat.epssDate
+        String url = "https://api.first.org/data/v1/epss?date=" + cat.epssDay()
                 + "&cve=" + String.join(",", picked);
         try {
             HttpClient client = HttpClient.newBuilder().connectTimeout(Duration.ofSeconds(15)).build();

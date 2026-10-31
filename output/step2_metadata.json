@@ -1,0 +1,20 @@
+{
+  "catalog_repo" : "https://github.com/caffeineintaker/fyp-vuln-catalog",
+  "snapshot" : "2026-10-29",
+  "kev_catalog_version" : "2026.10.28",
+  "kev_count" : 1762,
+  "epss_score_date" : "2026-10-28T12:03:13Z",
+  "epss_model_version" : "v2026.06.15",
+  "epss_count" : 396966,
+  "fingerprints" : "all OK (manifest.json SHA-256)",
+  "api_cross_check" : "10/10 match (sample of 10 CVEs)",
+  "ranking_rule" : "in_kev first, then epss_score, then epss_percentile (high to low), then severity",
+  "findings" : 886,
+  "findings_by_priority" : {
+    "P1 - in CISA KEV" : 2,
+    "P2 - EPSS >= 10%" : 36,
+    "P3 - EPSS 1-10%" : 252,
+    "P4 - EPSS < 1%" : 568,
+    "P5 - no EPSS score" : 28
+  }
+}

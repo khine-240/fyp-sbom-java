@@ -9,23 +9,23 @@ import java.io.FileInputStream;
 import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.nio.charset.StandardCharsets;
-import java.nio.file.Files;
 import java.security.MessageDigest;
 import java.util.HashMap;
-import java.util.List;
 import java.util.Map;
 import java.util.Set;
 import java.util.zip.GZIPInputStream;
 
-// Step 2: loads our frozen KEV + EPSS catalog (catalog/<date>/) after checking its fingerprints.
-//   catalog.json says which snapshot to use, e.g. { "catalog_dir": "catalog/2026-10-22", "epss_date": "2026-10-22" }
+// Step 2: loads the TEAM KEV + EPSS catalog (github.com/caffeineintaker/fyp-vuln-catalog)
+// after checking its fingerprints against the snapshot's manifest.json.
+//   catalog.json says which snapshot to use, e.g.
+//   { "catalog_dir": "vuln-catalog", "snapshot": "2026-10-29" }
 public class Catalog {
 
     // What we keep for each CVE
     public record Epss(double score, double percentile) {}
-    public record Kev(String dateAdded, String ransomware, String name) {}
+    public record Kev(String dateAdded, String dueDate, String ransomware) {}
 
-    public final String dir, epssDate;
+    public final String dir, snapshot;
     public String kevVersion = "", epssModel = "", epssScoreDate = "";
     public final Map<String, Kev> kev = new HashMap<>();
     public final Map<String, Epss> epss = new HashMap<>();
@@ -35,44 +35,42 @@ public class Catalog {
 
     public Catalog(String configFile) throws Exception {
         JsonNode cfg = mapper.readTree(new File(configFile));
-        dir = cfg.path("catalog_dir").asText();
-        epssDate = cfg.path("epss_date").asText();
+        snapshot = cfg.path("snapshot").asText();
+        dir = cfg.path("catalog_dir").asText() + "/snapshots/" + snapshot;
     }
 
-    // 1. Check every file against SHA256SUMS, so we know the catalog was not changed
+    // 1. Check kev.json and epss_scores.csv.gz against the SHA-256 in manifest.json
     public void verify() throws Exception {
-        List<String> lines = Files.readAllLines(new File(dir, "SHA256SUMS").toPath());
-        for (String line : lines) {
-            if (line.isBlank()) continue;
-            String expected = line.substring(0, 64);
-            String path = line.substring(64).trim();
-            String actual = sha256(new File(dir, path));
-            if (!actual.equals(expected)) {
-                throw new RuntimeException("Catalog file changed or damaged: " + path);
+        JsonNode manifest = mapper.readTree(new File(dir, "manifest.json"));
+        for (String part : new String[]{"kev", "epss"}) {
+            String file = manifest.path(part).path("file").asText();
+            String expected = manifest.path(part).path("sha256").asText();
+            if (!sha256(new File(dir, file)).equals(expected)) {
+                throw new RuntimeException("Catalog file changed or damaged: " + file);
             }
-            System.out.println("  " + path + ": OK");
+            System.out.println("  " + file + ": OK");
         }
     }
 
     // 2. Load KEV: every CVE in the list is "known exploited"
     public void loadKev() throws Exception {
-        JsonNode root = mapper.readTree(new File(dir, "kev/known_exploited_vulnerabilities.json"));
+        JsonNode root = mapper.readTree(new File(dir, "kev.json"));
         kevVersion = root.path("catalogVersion").asText();
         for (JsonNode v : root.path("vulnerabilities")) {
             kev.put(v.path("cveID").asText(), new Kev(v.path("dateAdded").asText(),
-                    v.path("knownRansomwareCampaignUse").asText(), v.path("vulnerabilityName").asText()));
+                    v.path("dueDate").asText(), v.path("knownRansomwareCampaignUse").asText()));
         }
         kevTotal = kev.size();
     }
 
-    // 3. Load EPSS, but only keep the CVEs we actually need (the file has ~394,000 lines)
+    // 3. Load EPSS, but only keep the CVEs we actually need (the file has ~397,000 lines)
     public void loadEpss(Set<String> wanted) throws Exception {
-        File f = new File(dir, "epss/epss_scores-" + epssDate + ".csv.gz");
+        File f = new File(dir, "epss_scores.csv.gz");
         try (BufferedReader r = new BufferedReader(new InputStreamReader(
                 new GZIPInputStream(new FileInputStream(f)), StandardCharsets.UTF_8))) {
             String line;
             while ((line = r.readLine()) != null) {
-                if (line.startsWith("#")) {                 // e.g. #model_version:v2026.06.15,score_date:2026-10-22T12:00:12Z
+                if (line.startsWith("#")) {                 // e.g. #model_version:v2026.06.15,score_date:2026-10-28T12:03:13Z
                     for (String part : line.substring(1).split(",")) {
                         if (part.startsWith("model_version:")) epssModel = part.substring(14);
                         if (part.startsWith("score_date:")) epssScoreDate = part.substring(11);
@@ -87,6 +85,11 @@ public class Catalog {
                 }
             }
         }
+    }
+
+    // The day of the EPSS scores (e.g. 2026-10-28) - used to ask the API for the same day
+    public String epssDay() {
+        return epssScoreDate.length() >= 10 ? epssScoreDate.substring(0, 10) : epssScoreDate;
     }
 
     static String sha256(File f) throws Exception {
