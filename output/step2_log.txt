@@ -1,7 +1,7 @@
 Using existing output/findings.json (886 findings)
 
 ================ STEP 2: EPSS + KEV ================
-Catalog: vuln-catalog/snapshots/2026-10-29 (checking fingerprints)
+Catalog: catalog/snapshots/2026-10-29 (checking fingerprints)
   kev.json: OK
   epss_scores.csv.gz: OK
 KEV catalog 2026.10.28: 1762 exploited CVEs
