@@ -1,0 +1,9 @@
+{
+  "catalog_dir" : "catalog/2026-10-22",
+  "kev_catalog_version" : "2026.10.21",
+  "epss_score_date" : "2026-10-22T12:00:12Z",
+  "epss_model_version" : "v2026.06.15",
+  "fingerprints" : "all OK (SHA256SUMS)",
+  "api_cross_check" : "10/10 match (sample of 10 CVEs)",
+  "ranking_rule" : "in_kev first, then epss_score high to low, then severity"
+}

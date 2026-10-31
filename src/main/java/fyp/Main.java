@@ -8,8 +8,10 @@ import com.fasterxml.jackson.databind.node.ArrayNode;
 import java.io.File;
 import java.util.List;
 
-// Step 1 pipeline:
-//   testset.json -> git clone each repo -> Syft (CycloneDX SBOM) -> Grype (matches) -> output/findings.json
+// Pipeline:
+//   Step 1: testset.json -> download each repo -> Syft (CycloneDX SBOM) -> Grype (matches) -> output/findings.json
+//   Step 2: findings + frozen KEV/EPSS catalog -> output/enriched_findings.json (ranked by exploitability)
+// Run with "--enrich-only" to skip Step 1 and reuse the existing output/findings.json.
 public class Main {
 
     public static void main(String[] args) throws Exception {
@@ -23,7 +25,14 @@ public class Main {
         JsonNode testset = mapper.readTree(new File("testset.json"));
         ArrayNode findings = mapper.createArrayNode();
 
-        for (JsonNode repo : testset.path("repos")) {
+        // "--enrich-only": skip scanning and reuse output/findings.json (Step 2 only)
+        boolean enrichOnly = List.of(args).contains("--enrich-only");
+        if (enrichOnly) {
+            findings = (ArrayNode) mapper.readTree(new File("output/findings.json"));
+            System.out.println("Using existing output/findings.json (" + findings.size() + " findings)");
+        }
+
+        for (JsonNode repo : enrichOnly ? mapper.createArrayNode() : testset.path("repos")) {
             String name = repo.path("name").asText();
             String url = repo.path("url").asText();
             System.out.println("\n=== " + name + " ===");
@@ -66,10 +75,17 @@ public class Main {
             }
         }
 
-        mapper.writeValue(new File("output/findings.json"), findings);
-        System.out.println("\nDone. " + findings.size() + " findings written to output/findings.json");
+        if (!enrichOnly) {
+            mapper.writeValue(new File("output/findings.json"), findings);
+            System.out.println("\nDone. " + findings.size() + " findings written to output/findings.json");
 
-        // 5. Print the summary table and save summary.csv + findings.csv
-        ReportWriter.write(testset, findings);
+            // 5. Print the summary table and save summary.csv + findings.csv
+            ReportWriter.write(testset, findings);
+        }
+
+        // 6. Step 2: add EPSS + KEV and rank (only if catalog.json exists)
+        if (new File("catalog.json").exists()) {
+            Enricher.run(testset, findings);
+        }
     }
 }
